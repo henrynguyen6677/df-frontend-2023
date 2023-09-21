@@ -1,0 +1,85 @@
+.overlay {
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+    position: relative;
+    margin: auto;
+    width: 10rem;
+    min-height: 5rem;
+    z-index: 100;
+    background-color: #FFF;
+    padding: 1rem;
+}
+
+.add-book {
+    width: 12rem;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.add-control {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 0.5rem 0;
+}
+
+.add-control label {
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.add-control input, .add-control select {
+    padding: 0.2rem;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.buttons-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+button {
+    flex: 0.4;
+    border-radius: 0.3rem;
+    border: solid #e1dcdd 0.1rem;
+    background-color: #c7266b;
+    color: #FFF;
+    cursor: pointer;
+    padding: 0.3rem;
+}
+
+.button-delete {
+    border: solid #FFF 0.1rem;
+    background-color: #FFF;
+    color: #000;
+    cursor: pointer;
+    padding: 0.3rem;
+}
+
+#areaDeleteBook {
+    padding: 2rem 0;
+}
+
+
+#closeDeleteBook {
+    cursor: pointer;
+}

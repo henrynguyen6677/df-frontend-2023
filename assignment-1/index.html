@@ -4,11 +4,69 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Bookstore</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="/assignment-1/style.css" rel="stylesheet" type="text/css" />
+    <link href="/assignment-1/search.css" rel="stylesheet" type="text/css" />
+    <link href="/assignment-1/modal.css" rel="stylesheet" type="text/css" />
   </head>
-
   <body>
-    Hello world
-    <script src="script.js"></script>
+    <div id="main">
+        <div id="container">
+          <div id="search">
+            <input id="searchInput" placeholder="Search books">
+            <button id="addBook">Add book</button>
+          </div>
+        </div>
+    </div>
+    <div id="overlayAddBook" class="overlay">
+      <div class="modal add-book">
+        <div class="modal-header">
+          <div>Add book</div>
+          <div id="closeAddBook">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+        <form id="formAddBook">
+          <div class="add-control">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+          </div>
+          <div class="add-control">
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author">
+          </div>
+          <div class="add-control">
+            <label for="topic">Topic</label>
+            <select name="topic" id="topic">
+              <option value="Comic">Comic</option>
+              <option value="Database">Database</option>
+              <option value="DevOps">DevOps</option>
+              <option value="Programming">Programming</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="add-control buttons-right">
+            <button type="submit" id="createBook">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="overlayDeleteBook" class="overlay">
+      <div class="modal delete-book">
+        <div class="modal-header">
+          <div>Delete book</div>
+          <div id="closeDeleteBook">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div id="areaDeleteBook"></div>
+        <div class="add-control buttons">
+          <button id="delete" class="button-delete">Delete</button>
+          <button id="cancel"  >Cancel</button>
+        </div>
+
+      </div>
+    </div>
+    <script src="/assignment-1/script.js"></script>
   </body>
 </html>
