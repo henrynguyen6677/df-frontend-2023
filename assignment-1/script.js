@@ -121,13 +121,13 @@ const exec = () => {
     closePopupAddBook();
   }
 
-  const handleDeleteBookData = (id) => {
-    const index = bookstore.data.findIndex((book) => book.id === id)
+  const handleDeleteBookData = (id, books) => {
+    const index = books.findIndex((book) => book.id === id)
     if (index < -1) return;
-    bookstore.data.splice(index, 1)
+    books.splice(index, 1)
   }
   const handleDeleteBook = (id) => {
-    handleDeleteBookData(id)
+    handleDeleteBookData(id, bookstore.data)
     clearBooks();
     drawTableItems();
     closePopupDelete();
@@ -136,7 +136,7 @@ const exec = () => {
 
   const handleSearchBook = (e) => {
     const value = e.target.value;
-    const dataClone = bookstore.data.map(item => item)
+    const dataClone = cloneObject(bookstore.data)
     const matchIds = dataClone.filter((item) =>
       item.name.includes(value) ||
       item.author.includes(value) ||
@@ -148,7 +148,7 @@ const exec = () => {
     const removeIds = dataClone
       .filter(({id}) => !matchIds.includes(id))
       .map(({id}) => id)
-    removeIds.forEach((removeId) => handleDeleteBookData(removeId))
+    removeIds.forEach((removeId) => handleDeleteBookData(removeId, dataClone))
     clearBooks();
     drawTableItems(dataClone);
   }
@@ -204,8 +204,7 @@ const exec = () => {
     }
     const addEventSearchBook = () => {
       const input = document.getElementById(ID_NAMES.searchInput)
-      input.addEventListener('keypress', handleSearchBook)
-      input.addEventListener('keydown', handleSearchBook)
+      input.addEventListener('keyup', handleSearchBook)
     }
 
 
@@ -268,6 +267,11 @@ const exec = () => {
     const header = initHeader(bookstore.header)
     global.container.appendChild(header)
   }
+
+  const cloneObject = (obj) => {
+    return JSON.parse(JSON.stringify(obj))
+  }
+
   const drawTableItems = (data = bookstore.data) => {
     const { initRow } = factoryDraw
 
