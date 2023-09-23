@@ -1,0 +1,70 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#main {
+  width: 100vw;
+  height: 100vh;
+}
+
+#container {
+  padding: 2rem;
+}
+
+.backgroundGray {
+  background-color: #eee;
+}
+
+.header {
+  font-weight: 600;
+}
+
+.header, .item {
+  flex: 1;
+  display: flex;
+}
+
+.header {
+  border-top: solid #a8a4a4 1px;
+  border-left: solid #a8a4a4 1px;
+  border-right: solid #a8a4a4 1px;
+}
+.item {
+  border-bottom: solid #a8a4a4 1px;
+  border-left: solid #a8a4a4 1px;
+  border-right: solid #a8a4a4 1px;
+}
+
+
+.header .first, .item .first {
+  flex: 0.5;
+}
+
+.header .second, .item .second {
+  flex: 0.2;
+}
+
+.header .third, .item .third {
+  flex: 0.2;
+}
+
+.header .end, .item .end {
+  flex: 0.1;
+}
+
+.item-cell {
+  border: solid #a8a4a4 1px;
+  padding: 0.6rem;
+}
+
+.delete-item {
+  color: #c7266b;
+  text-decoration: underline;
+  cursor: pointer;
+}
