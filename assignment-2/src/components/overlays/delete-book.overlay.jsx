@@ -3,7 +3,7 @@ import {OverlayContext} from "../../contexts/overlay.context";
 
 export default function DeleteBookOverlay() {
   const overlayContext = useContext(OverlayContext)
-  const handleClose = () => overlayContext.dispatch(false)
+  const handleClose = () => overlayContext.showDeleteOverlay(false)
   return (
     <div id="overlayDeleteBook" className="overlay">
       <div className="modal delete-book">

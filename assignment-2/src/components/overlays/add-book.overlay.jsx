@@ -1,11 +1,18 @@
+import {useContext} from "react";
+import {OverlayContext} from "../../contexts/overlay.context";
+
 export default function AddBookOverlay () {
+  const overlayContext = useContext(OverlayContext)
+
+  const handleClose = () => overlayContext.showAddOverlay(false)
+
   return (
     <div id="overlayAddBook" className="overlay">
       <div className="modal add-book">
         <div className="modal-header">
           <div>Add book</div>
-          <div id="closeAddBook">
-            <i className="fa fa-times" aria-hidden="true"></i>
+          <div onClick={handleClose} id="closeAddBook">
+            X
           </div>
         </div>
         <form id="formAddBook">

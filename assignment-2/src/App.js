@@ -13,7 +13,8 @@ function App() {
   return (
     <>
       <OverlayContext.Provider value={{
-        dispatch: setVisibleDeleteOverlay
+        showDeleteOverlay: setVisibleDeleteOverlay,
+        showAddOverlay: setVisibleAddOverlay
       }}>
         <MainComponent/>
         {
