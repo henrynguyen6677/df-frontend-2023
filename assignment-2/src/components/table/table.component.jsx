@@ -34,7 +34,20 @@ export default function TableComponent () {
       )
     }
     const initRow = (values) => {
-      return initItemCells(values, CLASS_NAMES.item)
+      const classNameMapping = CLASS_NAMES.mappingCellClass;
+      const cells = values.map((value, index) => {
+        const classNames = [CLASS_NAMES.itemCell, classNameMapping[index]]
+        return (
+          <div className={classNames.join(' ')}>
+            {value}
+          </div>
+        )
+      })
+      return (
+        <div className={CLASS_NAMES.header}>
+          {cells}
+        </div>
+      )
     }
     return {
       initHeader, initRow
@@ -58,10 +71,28 @@ export default function TableComponent () {
   //     global.container.appendChild(item)
   //   })
   // }
-
-  const drawTableItems = () => {
+  const openPopupDelete = (id, name) => {
+    // global.areaDeleteBook.innerHTML = `Do you want to delete <b>${name}</b> book?`
+    // global.idForDeleteBook = id;
+    // global.overlayDeleteBook.style.visibility = CSS_PROPS.visible
+    // TODO: Show modal
+    // Set message
 
   }
+  const drawTableItems = (data = bookstore.data) => {
+    const { initRow } = factoryDraw
 
-  return <>{drawTableHeader()}</>
+    return data.map(({ id, author, name, topic }) => {
+        const deleteElement =
+          <div className={CLASS_NAMES.deleteItem} onClick={() => openPopupDelete(id, name)} >
+            Delete
+          </div>
+        return initRow(Object.values({ name, author, topic, deleteElement }))
+      })
+  }
+
+  return <>
+    {drawTableHeader()}
+    {drawTableItems()}
+  </>
 }
