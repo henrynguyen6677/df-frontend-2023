@@ -1,9 +1,11 @@
 import {CLASS_NAMES} from "../../contants/classes.constant";
 import {bookstore} from "../../seed/bookstore";
+import {useContext} from "react";
+import {OverlayContext} from "../../contexts/overlay.context";
 
 
 export default function TableComponent () {
-
+  const overlayContext = useContext(OverlayContext)
   const factoryDraw = (() => {
     const initItemCells = (values, className) => {
       const classNameMapping = CLASS_NAMES.mappingCellClass;
@@ -77,6 +79,7 @@ export default function TableComponent () {
     // global.overlayDeleteBook.style.visibility = CSS_PROPS.visible
     // TODO: Show modal
     // Set message
+    overlayContext.dispatch(true)
 
   }
   const drawTableItems = (data = bookstore.data) => {
