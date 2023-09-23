@@ -8,8 +8,9 @@ export default function MainComponent () {
     <div id={ID_NAMES.main} className={CLASS_NAMES.backgroundGray}>
       <div id="container">
         <SearchComponent/>
+        <TableComponent/>
       </div>
-      <TableComponent/>
+
     </div>
   )
 }
