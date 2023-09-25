@@ -3,10 +3,13 @@ import {bookstore} from "../../seed/bookstore";
 import {useContext} from "react";
 import {OverlayContext} from "../../contexts/overlay.context";
 import PropTypes from 'prop-types';
+import {BookRowsContext} from "../../contexts/book-rows.context";
 
 
-export default function TableComponent ({ rows }) {
+export default function TableComponent () {
   const overlayContext = useContext(OverlayContext)
+  const bookRowsContext = useContext(BookRowsContext)
+  const { rows } = bookRowsContext
   const factoryDraw = (() => {
     const initHeader = (values) => {
       const cells = values.map((value) => {

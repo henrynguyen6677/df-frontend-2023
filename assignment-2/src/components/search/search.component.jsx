@@ -1,8 +1,11 @@
 import {useContext} from "react";
 import {OverlayContext} from "../../contexts/overlay.context";
 import PropTypes from "prop-types";
+import {BookRowsContext} from "../../contexts/book-rows.context";
 
-export default function SearchComponent ({ rows, defaultRows, setRows }) {
+export default function SearchComponent ({ defaultRows }) {
+  const bookRowsContext = useContext(BookRowsContext)
+  const { setRows, rows } = bookRowsContext
   const handleFilter = (e) => {
     const value = e.target.value
     if (value === '' && rows.length === 0) {
@@ -28,7 +31,5 @@ export default function SearchComponent ({ rows, defaultRows, setRows }) {
 }
 
 SearchComponent.propsType = {
-  rows: PropTypes.array,
   defaultRows: PropTypes.array,
-  setRows: PropTypes.func
 }
