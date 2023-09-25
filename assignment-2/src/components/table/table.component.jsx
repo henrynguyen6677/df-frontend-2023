@@ -2,9 +2,10 @@ import {CLASS_NAMES} from "../../contants/classes.constant";
 import {bookstore} from "../../seed/bookstore";
 import {useContext} from "react";
 import {OverlayContext} from "../../contexts/overlay.context";
+import PropTypes from 'prop-types';
 
 
-export default function TableComponent () {
+export default function TableComponent ({ rows }) {
   const overlayContext = useContext(OverlayContext)
   const factoryDraw = (() => {
     const initHeader = (values) => {
@@ -66,10 +67,9 @@ export default function TableComponent () {
     overlayContext.showDeleteOverlay(true)
 
   }
-  const drawTableItems = (data = bookstore.data) => {
+  const drawTableItems = () => {
     const { initRow } = factoryDraw
-
-    return data.map(({ id, author, name, topic }) => {
+    return rows?.map(({ id, author, name, topic }) => {
         const deleteElement =
           <div className={CLASS_NAMES.deleteItem} onClick={() => openPopupDelete(id, name)} >
             Delete
@@ -86,3 +86,7 @@ export default function TableComponent () {
 
   </>
 }
+
+TableComponent.propTypes = {
+  rows: PropTypes.array
+};
