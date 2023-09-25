@@ -21,46 +21,16 @@ html {
   background-color: #eee;
 }
 
-.header {
-  font-weight: 600;
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.header, .item {
-  flex: 1;
-  display: flex;
-}
-
-.header {
-  border-top: solid #a8a4a4 1px;
-  border-left: solid #a8a4a4 1px;
-  border-right: solid #a8a4a4 1px;
-}
-.item {
-  border-bottom: solid #a8a4a4 1px;
-  border-left: solid #a8a4a4 1px;
-  border-right: solid #a8a4a4 1px;
-}
-
-
-.header .first, .item .first {
-  flex: 0.5;
-}
-
-.header .second, .item .second {
-  flex: 0.2;
-}
-
-.header .third, .item .third {
-  flex: 0.2;
-}
-
-.header .end, .item .end {
-  flex: 0.1;
-}
-
-.item-cell {
-  border: solid #a8a4a4 1px;
-  padding: 0.6rem;
+td, th {
+  border: 2px solid #7e7e7e;
+  text-align: left;
+  padding: 8px;
 }
 
 .delete-item {

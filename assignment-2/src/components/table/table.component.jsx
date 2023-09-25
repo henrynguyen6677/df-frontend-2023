@@ -7,48 +7,32 @@ import {OverlayContext} from "../../contexts/overlay.context";
 export default function TableComponent () {
   const overlayContext = useContext(OverlayContext)
   const factoryDraw = (() => {
-    const initItemCells = (values, className) => {
-      const classNameMapping = CLASS_NAMES.mappingCellClass;
-      return values.map((value, index) => {
-        return (
-          <div className={CLASS_NAMES.itemCell}>
-            <div className={classNameMapping[index]}>
-              {value}
-            </div>
-          </div>
-        )
-      })
-    }
     const initHeader = (values) => {
-      const classNameMapping = CLASS_NAMES.mappingCellClass;
-      const cells = values.map((value, index) => {
-        const classNames = [CLASS_NAMES.itemCell, classNameMapping[index]]
+      const cells = values.map((value) => {
         return (
-            <div className={classNames.join(' ')}>
+            <th>
               {value}
-            </div>
+            </th>
         )
       })
       return (
-        <div className={CLASS_NAMES.header}>
+        <tr className={CLASS_NAMES.header}>
           {cells}
-        </div>
+        </tr>
       )
     }
     const initRow = (values) => {
-      const classNameMapping = CLASS_NAMES.mappingCellClass;
-      const cells = values.map((value, index) => {
-        const classNames = [CLASS_NAMES.itemCell, classNameMapping[index]]
+      const cells = values.map((value) => {
         return (
-          <div className={classNames.join(' ')}>
+          <td>
             {value}
-          </div>
+          </td>
         )
       })
       return (
-        <div className={CLASS_NAMES.header}>
+        <tr>
           {cells}
-        </div>
+        </tr>
       )
     }
     return {
@@ -95,7 +79,10 @@ export default function TableComponent () {
   }
 
   return <>
-    {drawTableHeader()}
-    {drawTableItems()}
+    <table>
+      {drawTableHeader()}
+      {drawTableItems()}
+    </table>
+
   </>
 }
