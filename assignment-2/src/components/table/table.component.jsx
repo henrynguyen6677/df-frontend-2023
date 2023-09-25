@@ -4,6 +4,7 @@ import {useContext} from "react";
 import {OverlayContext} from "../../contexts/overlay.context";
 import PropTypes from 'prop-types';
 import {BookRowsContext} from "../../contexts/book-rows.context";
+import {global, GlobalData} from "../../utils/localstore";
 
 
 export default function TableComponent () {
@@ -67,7 +68,11 @@ export default function TableComponent () {
     // global.overlayDeleteBook.style.visibility = CSS_PROPS.visible
     // TODO: Show modal
     // Set message
+    GlobalData.deleteBook = {
+      id, name
+    }
     overlayContext.showDeleteOverlay(true)
+
 
   }
   const drawTableItems = () => {

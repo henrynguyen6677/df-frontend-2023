@@ -21,9 +21,9 @@ export default function AddBookOverlay () {
       id: Date.now(),
       author, name, topic
     })
-    // TODO: Add to localstorage
     LocalStorage.setItem(BOOKS, JSON.stringify(newRows))
     bookRowsContext.setRows(newRows)
+    handleClose()
   }
   return (
     <div id="overlayAddBook" className="overlay">
