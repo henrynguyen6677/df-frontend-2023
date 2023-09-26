@@ -1,4 +1,4 @@
-import {useContext, useRef, useState} from "react";
+import {useContext, useState} from "react";
 import {BookRowsContext} from "../../contexts/book-rows.context";
 
 export default function PagingComponent () {
