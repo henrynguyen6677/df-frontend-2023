@@ -70,3 +70,28 @@ td, th {
   margin: 0 0.2rem;
   cursor: pointer;
 }
+
+
+.dark {
+  background-color: #0f0f11;
+  color: #eeeeee;
+}
+.light {
+  background-color: #efefef;
+  color: #212020;
+}
+
+.dark .modal {
+  background-color: #6e6e72;
+  color: #eeeeee;
+}
+
+.dark #searchInput {
+  background-color: #1e1e1f;
+  color: #eeeeee;
+}
+
+.light .modal {
+  background-color: #ffffff;
+  color: #212121;
+}
