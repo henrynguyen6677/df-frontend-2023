@@ -8,6 +8,7 @@ export default function ProfileComponent () {
       <div className="right-side">
         <div className="mode">
           <ToogleComponent />
+          <span>Light mode</span>
         </div>
         <div className="user">
           <img className="avatar" src={avatar} alt=""/>
