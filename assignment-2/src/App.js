@@ -1,6 +1,8 @@
 import './styles/style.css'
 import './styles/search.css'
 import './styles/modal.css'
+import './styles/profile.css'
+import './styles/toogle.css'
 import MainComponent from "./components/base/main.component";
 import AddBookOverlay from "./components/overlays/add-book.overlay";
 import DeleteBookOverlay from "./components/overlays/delete-book.overlay";

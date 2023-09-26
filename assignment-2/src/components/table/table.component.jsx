@@ -70,7 +70,6 @@ export default function TableComponent () {
   }
   const drawTableItems = () => {
     const { initRow } = factoryDraw
-    console.log(bookRowsContext.start)
     return rows?.slice(bookRowsContext.start * 3, bookRowsContext.start * 3 + 3).map(({ id, author, name, topic }) => {
         const deleteElement =
           <div className={CLASS_NAMES.deleteItem} onClick={() => openPopupDelete(id, name)} >

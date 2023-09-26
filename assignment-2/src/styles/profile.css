@@ -1,0 +1,33 @@
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+.left-side {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+.right-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mode, .user, .avatar {
+    padding: 0 0.5rem;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.avatar {
+    vertical-align: middle;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+.user-name {
+
+}
