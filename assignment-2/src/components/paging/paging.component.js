@@ -2,13 +2,13 @@ import {useContext, useState} from "react";
 import {BookRowsContext} from "../../contexts/book-rows.context";
 
 export default function PagingComponent () {
-  const counter = 30
   const FIRST_ITEMS = 3
   const LAST_ITEMS = 1
   const [ firstStart, setFirstStart] = useState(0)
   const [showDots, setShowDots] = useState(true)
 
   const bookRowsContext = useContext(BookRowsContext)
+  const counter = bookRowsContext.rows.length
 
   const handleSelectItem = (index) => {
     if (index + FIRST_ITEMS < counter) {
