@@ -4,5 +4,5 @@ export const GlobalData = {
   deleteBook: {
     id: -1,
     name: ''
-  }
+  },
 }

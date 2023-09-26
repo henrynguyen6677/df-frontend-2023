@@ -13,6 +13,7 @@ function App() {
   const [visibleDeleteOverlay , setVisibleDeleteOverlay] = useState(false)
   const [visibleAddOverlay , setVisibleAddOverlay] = useState(false)
   const [rows, setRows] = useState(JSON.parse(LocalStorage.getItem(BOOKS)))
+  const [start, setStart] = useState(0)
   return (
     <>
       <OverlayContext.Provider value={{
@@ -21,7 +22,9 @@ function App() {
       }}>
         <BookRowsContext.Provider value={{
           rows,
-          setRows
+          setRows,
+          setStart,
+          start
         }}>
           <MainComponent/>
           {

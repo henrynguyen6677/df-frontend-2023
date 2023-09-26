@@ -1,4 +1,5 @@
-import {useRef, useState} from "react";
+import {useContext, useRef, useState} from "react";
+import {BookRowsContext} from "../../contexts/book-rows.context";
 
 export default function PagingComponent () {
   const counter = 30
@@ -6,9 +7,13 @@ export default function PagingComponent () {
   const LAST_ITEMS = 1
   const [ firstStart, setFirstStart] = useState(0)
   const [showDots, setShowDots] = useState(true)
+
+  const bookRowsContext = useContext(BookRowsContext)
+
   const handleSelectItem = (index) => {
     if (index + FIRST_ITEMS < counter) {
       setFirstStart(index)
+      bookRowsContext.setStart(index)
     } else {
       setShowDots(false)
     }

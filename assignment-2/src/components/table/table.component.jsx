@@ -4,7 +4,7 @@ import {useContext} from "react";
 import {OverlayContext} from "../../contexts/overlay.context";
 import PropTypes from 'prop-types';
 import {BookRowsContext} from "../../contexts/book-rows.context";
-import {global, GlobalData} from "../../utils/localstore";
+import {GlobalData} from "../../utils/localstore";
 
 
 export default function TableComponent () {
@@ -63,21 +63,15 @@ export default function TableComponent () {
   //   })
   // }
   const openPopupDelete = (id, name) => {
-    // global.areaDeleteBook.innerHTML = `Do you want to delete <b>${name}</b> book?`
-    // global.idForDeleteBook = id;
-    // global.overlayDeleteBook.style.visibility = CSS_PROPS.visible
-    // TODO: Show modal
-    // Set message
     GlobalData.deleteBook = {
       id, name
     }
     overlayContext.showDeleteOverlay(true)
-
-
   }
   const drawTableItems = () => {
     const { initRow } = factoryDraw
-    return rows?.map(({ id, author, name, topic }) => {
+    console.log(bookRowsContext.start)
+    return rows?.slice(bookRowsContext.start * 3, bookRowsContext.start * 3 + 3).map(({ id, author, name, topic }) => {
         const deleteElement =
           <div className={CLASS_NAMES.deleteItem} onClick={() => openPopupDelete(id, name)} >
             Delete
