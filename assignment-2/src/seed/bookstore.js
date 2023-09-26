@@ -1,4 +1,6 @@
 import { TOPICS } from '../contants/topic.constant'
+import {LocalStorage} from "../utils/localstore";
+import {BOOKS} from "../contants/storage";
 
 export const bookstore = {
   header: [
@@ -34,3 +36,4 @@ export const bookstore = {
     }
   ]
 }
+LocalStorage.setItem(BOOKS, JSON.stringify(bookstore.data))
