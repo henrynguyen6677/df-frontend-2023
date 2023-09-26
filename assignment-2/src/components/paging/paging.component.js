@@ -8,7 +8,7 @@ export default function PagingComponent () {
   const [showDots, setShowDots] = useState(true)
 
   const bookRowsContext = useContext(BookRowsContext)
-  const counter = bookRowsContext.rows.length
+  const counter = bookRowsContext?.rows?.length
 
   const handleSelectItem = (index) => {
     if (index + FIRST_ITEMS < counter) {
