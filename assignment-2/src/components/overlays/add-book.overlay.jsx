@@ -13,9 +13,6 @@ export default function AddBookOverlay () {
     e.preventDefault()
     const formData = new FormData(formRef.current);
     const { author, name, topic } = Object.fromEntries(formData)
-    console.log(author, name, topic)
-    console.log(bookRowsContext.rows)
-
     const newRows = JSON.parse(JSON.stringify(bookRowsContext.rows))
     newRows.push({
       id: Date.now(),

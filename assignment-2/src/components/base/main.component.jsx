@@ -4,6 +4,7 @@ import TableComponent from "../table/table.component";
 import SearchComponent from "../search/search.component";
 import {LocalStorage} from "../../utils/localstore";
 import {BOOKS} from "../../contants/storage";
+import PagingComponent from "../paging/paging.component";
 
 export default function MainComponent () {
 
@@ -12,6 +13,7 @@ export default function MainComponent () {
       <div id="container">
         <SearchComponent defaultRows={JSON.parse(LocalStorage.getItem(BOOKS))}/>
         <TableComponent/>
+        <PagingComponent/>
       </div>
 
     </div>

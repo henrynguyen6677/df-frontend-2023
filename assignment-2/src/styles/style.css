@@ -38,3 +38,35 @@ td, th {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.paging-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 0;
+}
+
+.paging-item {
+  border: solid 2px #CCC;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  width: 2vmin;
+  height: 2vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.2rem;
+  cursor: pointer;
+}
+.paging-item:hover {
+  background-color: #7e7e7e;
+  color: #FFF;
+  font-weight: 800;
+}
+.paging-dots {
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
+}

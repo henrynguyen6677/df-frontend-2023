@@ -1,0 +1,39 @@
+export default function PagingComponent () {
+  const counter = 30
+  const FIRST_ITEMS = 3
+  const LAST_ITEMS = 1
+
+
+  const drawItems = (start, end) => {
+    const elements = []
+    for (let index = start; index < end; index++) {
+      elements.push((
+        <div className="paging-item" key={index}>
+          { index + 1 }
+        </div>
+      ))
+    }
+    return elements
+  }
+
+  const drawFirst = () => {
+    return drawItems(0, FIRST_ITEMS)
+  }
+  const drawDots = () => {
+    if (FIRST_ITEMS >= counter) return <></>
+    return <div className="paging-dots">..</div>
+  }
+  const drawLast = (start, end) => {
+    if (FIRST_ITEMS >= counter) return <></>
+    return drawItems(counter - LAST_ITEMS, counter)
+
+  }
+
+  return (
+    <div className="paging-container">
+      {drawFirst()}
+      {drawDots()}
+      {drawLast()}
+    </div>
+  )
+}
