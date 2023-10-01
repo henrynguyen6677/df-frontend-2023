@@ -1,26 +1,64 @@
-import logo from './logo.svg'
-import './App.css'
+import './styles/style.css';
+import './styles/search.css';
+import './styles/modal.css';
+import './styles/profile.css';
+import './styles/toogle.css';
+import { useState } from 'react';
+import MainComponent from './components/base/main.component';
+
+import { BooksContext } from './contexts/books.context';
+import {
+  GetBooksFromLocalStorage,
+  GetModeFromLocalStorage,
+} from './utils/localstore';
+import { ModeContext } from './contexts/mode.context';
+import { CLASS_NAMES } from './contants/classes.constant';
+import AddBookModal from './components/modals/add-book.modal';
+import DeleteBookModal from './components/modals/delete-book.modal';
+import { IBook } from './interfaces/book.interface';
 
 function App() {
+  const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
+  const [visibleAddModal, setVisibleAddModal] = useState(false);
+  const [books, setBooks] = useState<IBook[]>(GetBooksFromLocalStorage());
+  const [deleteBook, setDeleteBook] = useState({
+    id: -1,
+    name: '',
+  });
+  const [start, setStart] = useState(0);
+  const [mode, setMode] = useState(
+    GetModeFromLocalStorage() ?? CLASS_NAMES.light,
+  );
+  const [itemOffset, setItemOffset] = useState(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
+    <ModeContext.Provider
+      value={{
+        mode,
+        setMode,
+      }}
+    >
+      <BooksContext.Provider
+        value={{
+          books,
+          setBooks,
+          setStart,
+          start,
+          deleteBook,
+          setDeleteBook,
+          showDeleteOverlay: setVisibleDeleteModal,
+          showAddOverlay: setVisibleAddModal,
+          itemOffset,
+          setItemOffset,
+        }}
+      >
+        <div className={mode}>
+          <MainComponent />
+          {visibleAddModal && <AddBookModal />}
+          {visibleDeleteModal && <DeleteBookModal />}
+        </div>
+      </BooksContext.Provider>
+    </ModeContext.Provider>
+  );
 }
 
-export default App
+export default App;
