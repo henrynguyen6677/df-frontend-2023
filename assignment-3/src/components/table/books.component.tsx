@@ -5,23 +5,25 @@ import DeleteComponent from './delete.component';
 import { ITEMS_PER_PAGE } from '../../contants/paging.constant';
 
 export default function BooksComponent() {
-  const bookRowsContext = useContext(BooksContext);
-  const { books, itemOffset } = bookRowsContext;
+  const booksContext = useContext(BooksContext);
+  const { books, itemOffset } = booksContext;
   const endOffset = itemOffset + ITEMS_PER_PAGE;
   return (
     <tbody>
-      {books.slice(itemOffset, endOffset).map(({ id, author, name, topic }) => {
-        return (
-          <BookComponent
-            key={id}
-            id={id}
-            name={name}
-            author={author}
-            topic={topic}
-            deleteElement={<DeleteComponent id={id} name={name} />}
-          />
-        );
-      })}
+      {books
+        ?.slice(itemOffset, endOffset)
+        .map(({ id, author, name, topic }) => {
+          return (
+            <BookComponent
+              key={id}
+              id={id}
+              name={name}
+              author={author}
+              topic={topic}
+              deleteElement={<DeleteComponent id={id} name={name} />}
+            />
+          );
+        })}
     </tbody>
   );
 }
