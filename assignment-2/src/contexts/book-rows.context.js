@@ -1,9 +1,9 @@
-import {createContext} from "react";
+import { createContext } from "react";
 
 export const BookRowsContext = createContext({
-  rows: Array,
-  setRows: Function,
+  books: Array,
+  setBooks: Function,
   setStart: Function,
   start: Number,
-  deleteRow: Object
-})
+  deleteRow: Object,
+});

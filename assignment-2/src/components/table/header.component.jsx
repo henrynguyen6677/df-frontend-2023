@@ -3,13 +3,13 @@ import { bookstore } from "../../seed/bookstore";
 import CellComponent from "./cell.component";
 
 export default function HeaderComponent() {
-  const values = bookstore.header;
+  const headerValues = bookstore.header;
 
   return (
     <thead>
       <tr className={CLASS_NAMES.header}>
-        {values.map((value, index) => (
-          <CellComponent key={`${value}-${index}`} value={value} />
+        {headerValues.map((headerValue, index) => (
+          <CellComponent key={`${headerValue}-${index}`} value={headerValue} />
         ))}
       </tr>
     </thead>
