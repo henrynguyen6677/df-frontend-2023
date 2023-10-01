@@ -7,23 +7,30 @@ import MainComponent from "./components/base/main.component";
 
 import { useState } from "react";
 import { BooksContext } from "./contexts/books.context";
-import { LocalStorage } from "./utils/localstore";
+import {
+  GetBooksFromLocalStorage,
+  GetModeFromLocalStorage,
+  LocalStorage,
+} from "./utils/localstore";
 import { BOOKS } from "./contants/storage";
 import { ModeContext } from "./contexts/mode.context";
 import { CLASS_NAMES } from "./contants/classes.constant";
 import AddBookModal from "./components/modals/add-book.modal";
 import DeleteBookModal from "./components/modals/delete-book.modal";
+import { JSONStringToObject } from "./utils/parse.helper";
 
 function App() {
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
   const [visibleAddModal, setVisibleAddModal] = useState(false);
-  const [books, setBooks] = useState(JSON.parse(LocalStorage.getItem(BOOKS)));
+  const [books, setBooks] = useState(GetBooksFromLocalStorage());
   const [deleteBook, setDeleteBook] = useState({
     id: -1,
     name: "",
   });
   const [start, setStart] = useState(0);
-  const [mode, setMode] = useState(CLASS_NAMES.light);
+  const [mode, setMode] = useState(
+    GetModeFromLocalStorage() ?? CLASS_NAMES.light,
+  );
   const [itemOffset, setItemOffset] = useState(0);
   return (
     <>

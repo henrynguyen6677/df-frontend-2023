@@ -1,5 +1,9 @@
 import { useContext } from "react";
-import { LocalStorage } from "../../utils/localstore";
+import {
+  GetBooksFromLocalStorage,
+  LocalStorage,
+  SetBooksToLocalStorage,
+} from "../../utils/localstore";
 import { BooksContext } from "../../contexts/books.context";
 import { BOOKS } from "../../contants/storage";
 import { JSONStringToObject } from "../../utils/parse.helper";
@@ -9,12 +13,12 @@ export default function DeleteBookModal() {
   const handleClose = () => booksContext.showDeleteOverlay(false);
   const handleDelete = () => {
     const id = booksContext.deleteBook.id;
-    const books = JSONStringToObject(LocalStorage.getItem(BOOKS));
+    const books = GetBooksFromLocalStorage();
     const index = books.findIndex((book) => book.id === id);
     if (index < -1) return;
     books.splice(index, 1);
     booksContext.setBooks(books);
-    LocalStorage.setItem(BOOKS, JSON.stringify(books));
+    SetBooksToLocalStorage(books);
     handleClose();
   };
 
