@@ -2,14 +2,15 @@ import { useContext } from "react";
 import { BooksContext } from "../../contexts/books.context";
 import BookComponent from "./book.component";
 import DeleteComponent from "./delete.component";
+import { ITEMS_PER_PAGE } from "../../contants/paging.constant";
 
 export default function BooksComponent() {
   const bookRowsContext = useContext(BooksContext);
-  const { books } = bookRowsContext;
-
+  const { books, itemOffset } = bookRowsContext;
+  const endOffset = itemOffset + ITEMS_PER_PAGE;
   return (
     <tbody>
-      {books.map(({ id, author, name, topic }) => {
+      {books.slice(itemOffset, endOffset).map(({ id, author, name, topic }) => {
         return (
           <BookComponent
             key={id}

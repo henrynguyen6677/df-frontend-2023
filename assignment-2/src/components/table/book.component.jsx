@@ -9,8 +9,8 @@ export default function BookComponent({
 }) {
   return (
     <tr>
-      {[author, name, topic, deleteElement].map((prop) => (
-        <CellComponent key={`${id}-book-prop`} value={prop} />
+      {[author, name, topic, deleteElement].map((prop, index) => (
+        <CellComponent key={`${id}-${index}-book-prop`} value={prop} />
       ))}
     </tr>
   );

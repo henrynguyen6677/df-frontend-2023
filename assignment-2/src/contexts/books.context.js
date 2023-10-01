@@ -9,4 +9,6 @@ export const BooksContext = createContext({
   setDeleteBook: Function,
   showDeleteOverlay: Function,
   showAddOverlay: Function,
+  itemOffset: Number,
+  setItemOffset: Function,
 });

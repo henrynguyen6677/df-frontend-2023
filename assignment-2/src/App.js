@@ -24,6 +24,7 @@ function App() {
   });
   const [start, setStart] = useState(0);
   const [mode, setMode] = useState(CLASS_NAMES.light);
+  const [itemOffset, setItemOffset] = useState(0);
   return (
     <>
       <ModeContext.Provider
@@ -42,6 +43,8 @@ function App() {
             setDeleteBook,
             showDeleteOverlay: setVisibleDeleteModal,
             showAddOverlay: setVisibleAddModal,
+            itemOffset,
+            setItemOffset,
           }}
         >
           <div className={mode}>
