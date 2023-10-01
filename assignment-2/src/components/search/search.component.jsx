@@ -2,10 +2,7 @@ import { useContext } from "react";
 import PropTypes from "prop-types";
 import { BooksContext } from "../../contexts/books.context";
 import { SearchHelper } from "../../utils/search.helper";
-import {
-  GetBooksFromLocalStorage,
-  SetBooksToLocalStorage,
-} from "../../utils/localstore";
+import { SetBooksToLocalStorage } from "../../utils/localstore";
 import { bookstore } from "../../seed/bookstore";
 
 export default function SearchComponent({ defaultBooks }) {

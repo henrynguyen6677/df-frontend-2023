@@ -1,12 +1,9 @@
 import { useContext } from "react";
 import {
   GetBooksFromLocalStorage,
-  LocalStorage,
   SetBooksToLocalStorage,
 } from "../../utils/localstore";
 import { BooksContext } from "../../contexts/books.context";
-import { BOOKS } from "../../contants/storage";
-import { JSONStringToObject } from "../../utils/parse.helper";
 
 export default function DeleteBookModal() {
   const booksContext = useContext(BooksContext);
