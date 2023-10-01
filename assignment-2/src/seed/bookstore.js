@@ -35,8 +35,3 @@ export const bookstore = {
     },
   ],
 };
-(() => {
-  const books = GetBooksFromLocalStorage();
-  if (Object.keys(books).length > 0) return;
-  SetBooksToLocalStorage(bookstore.data);
-})();

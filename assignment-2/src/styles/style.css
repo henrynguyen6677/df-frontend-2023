@@ -88,24 +88,6 @@ td, th {
   font-weight: 800;
 }
 
-/*li.previous a,*/
-/*li.next a,*/
-/*li.break a {*/
-/*  border-color: transparent;*/
-/*}*/
-/*li.active a {*/
-/*  background-color: #0366d6;*/
-/*  border-color: transparent;*/
-/*  color: white;*/
-/*  min-width: 32px;*/
-/*}*/
-/*li.disabled a {*/
-/*  color: grey;*/
-/*}*/
-/*li.disable,*/
-/*li.disabled a {*/
-/*  cursor: default;*/
-/*}*/
 
 .dark {
   background-color: #0f0f11;
