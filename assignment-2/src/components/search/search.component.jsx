@@ -18,7 +18,7 @@ export default function SearchComponent({ defaultBooks }) {
     setBooks(newBooks);
   };
 
-  const handleAdd = () => bookRowsContext.showAddOverlay(true);
+  const handleAdd = () => bookRowsContext.setVisibleAddModal(true);
   const handleInit = () => {
     SetBooksToLocalStorage(bookstore.data);
     bookRowsContext.setBooks(bookstore.data);

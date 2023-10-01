@@ -7,7 +7,7 @@ import { BooksContext } from "../../contexts/books.context";
 
 export default function DeleteBookModal() {
   const booksContext = useContext(BooksContext);
-  const handleClose = () => booksContext.showDeleteOverlay(false);
+  const handleClose = () => booksContext.setVisibleDeleteModal(false);
   const handleDelete = () => {
     const id = booksContext.deleteBook.id;
     const books = GetBooksFromLocalStorage();

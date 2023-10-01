@@ -7,8 +7,8 @@ export const BooksContext = createContext({
   start: Number,
   deleteBook: Object,
   setDeleteBook: Function,
-  showDeleteOverlay: Function,
-  showAddOverlay: Function,
+  setVisibleDeleteModal: Function,
+  setVisibleAddModal: Function,
   itemOffset: Number,
   setItemOffset: Function,
 });

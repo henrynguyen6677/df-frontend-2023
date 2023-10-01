@@ -6,7 +6,7 @@ import { JSONStringToObject } from "../../utils/parse.helper";
 export default function AddBookModal() {
   const booksContext = useContext(BooksContext);
   const formRef = useRef();
-  const handleClose = () => booksContext.showAddOverlay(false);
+  const handleClose = () => booksContext.setVisibleAddModal(false);
   const handleCreateBook = (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
@@ -28,7 +28,7 @@ export default function AddBookModal() {
         <div className="modal-header">
           <div>Add book</div>
           <div onClick={handleClose} id="closeAddBook">
-            X
+            <i className="fa fa-times" aria-hidden="true"></i>
           </div>
         </div>
         <form ref={formRef} id="formAddBook" onSubmit={handleCreateBook}>

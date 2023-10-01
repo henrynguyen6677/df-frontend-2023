@@ -45,8 +45,8 @@ function App() {
             start,
             deleteBook,
             setDeleteBook,
-            showDeleteOverlay: setVisibleDeleteModal,
-            showAddOverlay: setVisibleAddModal,
+            setVisibleDeleteModal,
+            setVisibleAddModal,
             itemOffset,
             setItemOffset,
           }}
