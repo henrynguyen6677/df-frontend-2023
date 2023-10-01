@@ -1,11 +1,10 @@
 import { useContext } from "react";
-import { OverlayContext } from "../../contexts/overlay.context";
 import PropTypes from "prop-types";
-import { BookRowsContext } from "../../contexts/book-rows.context";
+import { BooksContext } from "../../contexts/books.context";
 import { SearchHelper } from "../../utils/search.helper";
 
 export default function SearchComponent({ defaultBooks }) {
-  const bookRowsContext = useContext(BookRowsContext);
+  const bookRowsContext = useContext(BooksContext);
   const { setBooks, books } = bookRowsContext;
   const handleFilter = (e) => {
     const filter = e.target.value;
@@ -17,8 +16,7 @@ export default function SearchComponent({ defaultBooks }) {
     setBooks(newBooks);
   };
 
-  const overlayContext = useContext(OverlayContext);
-  const handleAdd = () => overlayContext.showAddOverlay(true);
+  const handleAdd = () => bookRowsContext.showAddOverlay(true);
 
   return (
     <div id="search">

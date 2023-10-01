@@ -6,8 +6,7 @@ import "./styles/toogle.css";
 import MainComponent from "./components/base/main.component";
 
 import { useState } from "react";
-import { OverlayContext } from "./contexts/overlay.context";
-import { BookRowsContext } from "./contexts/book-rows.context";
+import { BooksContext } from "./contexts/books.context";
 import { LocalStorage } from "./utils/localstore";
 import { BOOKS } from "./contants/storage";
 import { ModeContext } from "./contexts/mode.context";
@@ -19,6 +18,10 @@ function App() {
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
   const [visibleAddModal, setVisibleAddModal] = useState(false);
   const [books, setBooks] = useState(JSON.parse(LocalStorage.getItem(BOOKS)));
+  const [deleteBook, setDeleteBook] = useState({
+    id: -1,
+    name: "",
+  });
   const [start, setStart] = useState(0);
   const [mode, setMode] = useState(CLASS_NAMES.light);
   return (
@@ -29,27 +32,24 @@ function App() {
           setMode,
         }}
       >
-        <OverlayContext.Provider
+        <BooksContext.Provider
           value={{
+            books,
+            setBooks,
+            setStart,
+            start,
+            deleteBook,
+            setDeleteBook,
             showDeleteOverlay: setVisibleDeleteModal,
             showAddOverlay: setVisibleAddModal,
           }}
         >
-          <BookRowsContext.Provider
-            value={{
-              books,
-              setBooks,
-              setStart,
-              start,
-            }}
-          >
-            <div className={mode}>
-              <MainComponent />
-              {visibleAddModal && <AddBookModal />}
-              {visibleDeleteModal && <DeleteBookModal />}
-            </div>
-          </BookRowsContext.Provider>
-        </OverlayContext.Provider>
+          <div className={mode}>
+            <MainComponent />
+            {visibleAddModal && <AddBookModal />}
+            {visibleDeleteModal && <DeleteBookModal />}
+          </div>
+        </BooksContext.Provider>
       </ModeContext.Provider>
     </>
   );

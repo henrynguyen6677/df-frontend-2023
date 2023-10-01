@@ -1,27 +1,26 @@
 import { useContext, useRef } from "react";
-import { OverlayContext } from "../../contexts/overlay.context";
-import { BookRowsContext } from "../../contexts/book-rows.context";
+import { BooksContext } from "../../contexts/books.context";
 import { LocalStorage } from "../../utils/localstore";
 import { BOOKS } from "../../contants/storage";
+import { JSONStringToObject } from "../../utils/parse.helper";
 
 export default function AddBookModal() {
-  const overlayContext = useContext(OverlayContext);
+  const booksContext = useContext(BooksContext);
   const formRef = useRef();
-  const handleClose = () => overlayContext.showAddOverlay(false);
-  const bookRowsContext = useContext(BookRowsContext);
+  const handleClose = () => booksContext.showAddOverlay(false);
   const handleCreateBook = (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const { author, name, topic } = Object.fromEntries(formData);
-    const newRows = JSON.parse(JSON.stringify(bookRowsContext.rows));
-    newRows.push({
+    const newBooks = JSONStringToObject(JSON.stringify(booksContext.books));
+    newBooks.push({
       id: Date.now(),
       author,
       name,
       topic,
     });
-    LocalStorage.setItem(BOOKS, JSON.stringify(newRows));
-    bookRowsContext.setRows(newRows);
+    LocalStorage.setItem(BOOKS, JSON.stringify(newBooks));
+    booksContext.setBooks(newBooks);
     handleClose();
   };
   return (

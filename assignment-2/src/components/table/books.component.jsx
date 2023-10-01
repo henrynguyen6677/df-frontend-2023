@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { BookRowsContext } from "../../contexts/book-rows.context";
+import { BooksContext } from "../../contexts/books.context";
 import BookComponent from "./book.component";
 import DeleteComponent from "./delete.component";
 
 export default function BooksComponent() {
-  const bookRowsContext = useContext(BookRowsContext);
+  const bookRowsContext = useContext(BooksContext);
   const { books } = bookRowsContext;
 
   return (

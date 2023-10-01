@@ -1,21 +1,20 @@
 import { useContext } from "react";
-import { OverlayContext } from "../../contexts/overlay.context";
-import { GlobalData, LocalStorage } from "../../utils/localstore";
-import { BookRowsContext } from "../../contexts/book-rows.context";
+import { LocalStorage } from "../../utils/localstore";
+import { BooksContext } from "../../contexts/books.context";
 import { BOOKS } from "../../contants/storage";
+import { JSONStringToObject } from "../../utils/parse.helper";
 
 export default function DeleteBookModal() {
-  const overlayContext = useContext(OverlayContext);
-  const bookRowsContext = useContext(BookRowsContext);
-  const handleClose = () => overlayContext.showDeleteOverlay(false);
+  const booksContext = useContext(BooksContext);
+  const handleClose = () => booksContext.showDeleteOverlay(false);
   const handleDelete = () => {
-    const { id } = GlobalData.deleteBook;
-    const rows = JSON.parse(LocalStorage.getItem(BOOKS));
-    const index = rows.findIndex((book) => book.id === id);
+    const id = booksContext.deleteBook.id;
+    const books = JSONStringToObject(LocalStorage.getItem(BOOKS));
+    const index = books.findIndex((book) => book.id === id);
     if (index < -1) return;
-    rows.splice(index, 1);
-    bookRowsContext.setRows(rows);
-    LocalStorage.setItem(BOOKS, JSON.stringify(rows));
+    books.splice(index, 1);
+    booksContext.setBooks(books);
+    LocalStorage.setItem(BOOKS, JSON.stringify(books));
     handleClose();
   };
 
@@ -30,7 +29,7 @@ export default function DeleteBookModal() {
         </div>
         <div id="areaDeleteBook">
           <span>Do you want to delete </span>
-          <b>{GlobalData.deleteBook.name}</b>
+          <b>{booksContext.deleteBook.name}</b>
           <span> book?</span>
         </div>
         <div className="add-control buttons">

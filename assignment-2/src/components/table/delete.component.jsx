@@ -1,16 +1,15 @@
 import { CLASS_NAMES } from "../../contants/classes.constant";
 import { useContext } from "react";
-import { OverlayContext } from "../../contexts/overlay.context";
-import { GlobalData } from "../../utils/localstore";
+import { BooksContext } from "../../contexts/books.context";
 
 export default function DeleteComponent({ id, name }) {
-  const overlayContext = useContext(OverlayContext);
+  const booksContext = useContext(BooksContext);
   const openPopupDelete = (id, name) => {
-    GlobalData.deleteBook = {
+    booksContext.setDeleteBook({
       id,
       name,
-    };
-    overlayContext.showDeleteOverlay(true);
+    });
+    booksContext.showDeleteOverlay(true);
   };
   return (
     <div
