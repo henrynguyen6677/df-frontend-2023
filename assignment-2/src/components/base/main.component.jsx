@@ -5,6 +5,7 @@ import { LocalStorage } from "../../utils/localstore";
 import { BOOKS } from "../../contants/storage";
 import PagingComponent from "../paging/paging.component";
 import ProfileComponent from "../profile/profile.component";
+import { JSONStringToObject } from "../../utils/parse.helper";
 
 export default function MainComponent() {
   return (
@@ -12,7 +13,7 @@ export default function MainComponent() {
       <div id="container">
         <ProfileComponent />
         <SearchComponent
-          defaultBooks={JSON.parse(LocalStorage.getItem(BOOKS))}
+          defaultBooks={JSONStringToObject(LocalStorage.getItem(BOOKS))}
         />
         <TableComponent />
         <PagingComponent />
