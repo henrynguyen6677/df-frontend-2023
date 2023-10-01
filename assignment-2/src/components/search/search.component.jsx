@@ -35,5 +35,5 @@ export default function SearchComponent({ defaultBooks }) {
 }
 
 SearchComponent.propsType = {
-  defaultRows: PropTypes.array,
+  defaultBooks: PropTypes.array,
 };
