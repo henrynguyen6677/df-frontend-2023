@@ -1,27 +1,28 @@
-import {useContext, useRef} from "react";
-import {OverlayContext} from "../../contexts/overlay.context";
-import {BookRowsContext} from "../../contexts/book-rows.context";
-import {LocalStorage} from "../../utils/localstore";
-import {BOOKS} from "../../contants/storage";
+import { useContext, useRef } from "react";
+import { BooksContext } from "../../contexts/books.context";
+import { LocalStorage, SetBooksToLocalStorage } from "../../utils/localstore";
+import { BOOKS } from "../../contants/storage";
+import { JSONStringToObject } from "../../utils/parse.helper";
 
-export default function AddBookOverlay () {
-  const overlayContext = useContext(OverlayContext)
-  const formRef = useRef()
-  const handleClose = () => overlayContext.showAddOverlay(false)
-  const bookRowsContext = useContext(BookRowsContext)
+export default function AddBookModal() {
+  const booksContext = useContext(BooksContext);
+  const formRef = useRef();
+  const handleClose = () => booksContext.showAddOverlay(false);
   const handleCreateBook = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const formData = new FormData(formRef.current);
-    const { author, name, topic } = Object.fromEntries(formData)
-    const newRows = JSON.parse(JSON.stringify(bookRowsContext.rows))
-    newRows.push({
+    const { author, name, topic } = Object.fromEntries(formData);
+    const newBooks = JSONStringToObject(JSON.stringify(booksContext.books));
+    newBooks.push({
       id: Date.now(),
-      author, name, topic
-    })
-    LocalStorage.setItem(BOOKS, JSON.stringify(newRows))
-    bookRowsContext.setRows(newRows)
-    handleClose()
-  }
+      author,
+      name,
+      topic,
+    });
+    SetBooksToLocalStorage(newBooks);
+    booksContext.setBooks(newBooks);
+    handleClose();
+  };
   return (
     <div id="overlayAddBook" className="overlay">
       <div className="modal add-book">
@@ -31,15 +32,14 @@ export default function AddBookOverlay () {
             X
           </div>
         </div>
-        <form ref={formRef}
-              id="formAddBook" onSubmit={handleCreateBook}>
+        <form ref={formRef} id="formAddBook" onSubmit={handleCreateBook}>
           <div className="add-control">
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name"/>
+            <input type="text" name="name" id="name" />
           </div>
           <div className="add-control">
             <label htmlFor="author">Author</label>
-            <input type="text" name="author" id="author"/>
+            <input type="text" name="author" id="author" />
           </div>
           <div className="add-control">
             <label htmlFor="topic">Topic</label>
@@ -52,10 +52,12 @@ export default function AddBookOverlay () {
             </select>
           </div>
           <div className="add-control buttons-right">
-            <button type="submit" id="createBook">Create</button>
+            <button type="submit" id="createBook">
+              Create
+            </button>
           </div>
         </form>
       </div>
     </div>
-  )
+  );
 }

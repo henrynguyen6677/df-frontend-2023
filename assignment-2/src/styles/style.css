@@ -42,7 +42,18 @@ td, th {
 .paging-container {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding: 1rem 0;
+}
+
+.paging-container li {
+  list-style-type: none;
+}
+
+.paging-previous, .paging-next {
+  color: #108f8f;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .paging-item {
@@ -69,6 +80,12 @@ td, th {
   padding: 0.3rem;
   margin: 0 0.2rem;
   cursor: pointer;
+}
+
+.paging-item-active {
+  background-color: #e59797;
+  color: #FFF;
+  font-weight: 800;
 }
 
 

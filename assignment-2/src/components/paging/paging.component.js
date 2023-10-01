@@ -1,54 +1,42 @@
-import {useContext, useState} from "react";
-import {BookRowsContext} from "../../contexts/book-rows.context";
+import { useContext } from "react";
+import { BooksContext } from "../../contexts/books.context";
+import ReactPaginate from "react-paginate";
+import {
+  ITEMS_PER_PAGE,
+  PAGE_RANGE_DISPLAYED,
+} from "../../contants/paging.constant";
+import { PAGING_CLASS_NAME } from "../../contants/classes.constant";
 
-export default function PagingComponent () {
-  const FIRST_ITEMS = 3
-  const LAST_ITEMS = 1
-  const [ firstStart, setFirstStart] = useState(0)
-  const [showDots, setShowDots] = useState(true)
-
-  const bookRowsContext = useContext(BookRowsContext)
-  const counter = bookRowsContext?.rows?.length
-
-  const handleSelectItem = (index) => {
-    if (index + FIRST_ITEMS < counter) {
-      setFirstStart(index)
-      bookRowsContext.setStart(index)
-    } else {
-      setShowDots(false)
-    }
-  }
-
-  const drawItems = (start, end) => {
-    const elements = []
-    for (let index = start; index < end; index++) {
-      elements.push((
-        <div onClick={() => handleSelectItem(index)} className="paging-item" key={index}>
-          { index + 1 }
-        </div>
-      ))
-    }
-    return elements
-  }
-
-  const drawFirst = () => {
-    return drawItems(firstStart, firstStart + FIRST_ITEMS)
-  }
-  const drawDots = () => {
-    if (FIRST_ITEMS >= counter) return <></>
-    return <div className="paging-dots">..</div>
-  }
-  const drawLast = (start, end) => {
-    if (FIRST_ITEMS >= counter) return <></>
-    return drawItems(counter - LAST_ITEMS, counter)
-
-  }
+function PaginatedItems({ itemsPerPage }) {
+  const booksContext = useContext(BooksContext);
+  const { books, setItemOffset } = booksContext;
+  const pageCount = Math.ceil(books.length / itemsPerPage);
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % books.length;
+    setItemOffset(newOffset);
+  };
 
   return (
-    <div className="paging-container">
-      {drawFirst()}
-      {showDots && drawDots()}
-      {drawLast()}
-    </div>
-  )
+    <>
+      <ReactPaginate
+        className={PAGING_CLASS_NAME.className}
+        pageClassName={PAGING_CLASS_NAME.pageClassName}
+        breakClassName={PAGING_CLASS_NAME.breakClassName}
+        activeClassName={PAGING_CLASS_NAME.activeClassName}
+        previousClassName={PAGING_CLASS_NAME.previousClassName}
+        nextClassName={PAGING_CLASS_NAME.nextClassName}
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={PAGE_RANGE_DISPLAYED}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
+    </>
+  );
+}
+
+export default function PagingComponent() {
+  return <PaginatedItems itemsPerPage={ITEMS_PER_PAGE} />;
 }

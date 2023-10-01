@@ -1,8 +1,20 @@
-export const LocalStorage = window.localStorage
+import { BOOKS, MODE } from "../contants/storage";
+import { JSONStringToObject } from "./parse.helper";
 
-export const GlobalData = {
-  deleteBook: {
-    id: -1,
-    name: ''
-  },
-}
+export const LocalStorage = window.localStorage;
+
+export const GetBooksFromLocalStorage = () => {
+  return JSONStringToObject(LocalStorage.getItem(BOOKS));
+};
+
+export const SetBooksToLocalStorage = (books) => {
+  LocalStorage.setItem(BOOKS, JSON.stringify(books));
+};
+
+export const GetModeFromLocalStorage = () => {
+  return LocalStorage.getItem(MODE);
+};
+
+export const SetModeToLocalStorage = (mode) => {
+  LocalStorage.setItem(MODE, mode);
+};
