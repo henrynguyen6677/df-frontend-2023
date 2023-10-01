@@ -10,6 +10,7 @@ import { PAGING_CLASS_NAME } from "../../contants/classes.constant";
 function PaginatedItems({ itemsPerPage }) {
   const booksContext = useContext(BooksContext);
   const { books, setItemOffset } = booksContext;
+  if (!books) return <></>;
   const pageCount = Math.ceil(books.length / itemsPerPage);
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % books.length;
