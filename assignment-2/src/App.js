@@ -10,14 +10,11 @@ import { BooksContext } from "./contexts/books.context";
 import {
   GetBooksFromLocalStorage,
   GetModeFromLocalStorage,
-  LocalStorage,
 } from "./utils/localstore";
-import { BOOKS } from "./contants/storage";
 import { ModeContext } from "./contexts/mode.context";
 import { CLASS_NAMES } from "./contants/classes.constant";
 import AddBookModal from "./components/modals/add-book.modal";
 import DeleteBookModal from "./components/modals/delete-book.modal";
-import { JSONStringToObject } from "./utils/parse.helper";
 
 function App() {
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
@@ -48,8 +45,8 @@ function App() {
             start,
             deleteBook,
             setDeleteBook,
-            showDeleteOverlay: setVisibleDeleteModal,
-            showAddOverlay: setVisibleAddModal,
+            setVisibleDeleteModal,
+            setVisibleAddModal,
             itemOffset,
             setItemOffset,
           }}

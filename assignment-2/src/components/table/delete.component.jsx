@@ -9,7 +9,7 @@ export default function DeleteComponent({ id, name }) {
       id,
       name,
     });
-    booksContext.showDeleteOverlay(true);
+    booksContext.setVisibleDeleteModal(true);
   };
   return (
     <div

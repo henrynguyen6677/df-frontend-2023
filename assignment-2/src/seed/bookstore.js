@@ -1,10 +1,4 @@
 import { TOPICS } from "../contants/topic.constant";
-import {
-  GetBooksFromLocalStorage,
-  LocalStorage,
-  SetBooksToLocalStorage,
-} from "../utils/localstore";
-import { BOOKS } from "../contants/storage";
 
 export const bookstore = {
   header: ["Name", "Author", "Topic", "Action"],
