@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
 import { BooksContext } from "../../contexts/books.context";
-import { SetBooksToLocalStorage } from "../../utils/localstore";
+import { setBooksToLocalStorage } from "../../utils/localstore";
 import { JSONStringToObject } from "../../utils/parse.helper";
 
 export default function AddBookModal() {
@@ -18,7 +18,7 @@ export default function AddBookModal() {
       name,
       topic,
     });
-    SetBooksToLocalStorage(newBooks);
+    setBooksToLocalStorage(newBooks);
     booksContext.setBooks(newBooks);
     handleClose();
   };

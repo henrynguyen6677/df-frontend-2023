@@ -1,14 +1,16 @@
 import { createContext } from "react";
 
+const noop = () => {};
+
 export const BooksContext = createContext({
-  books: Array,
-  setBooks: Function,
-  setStart: Function,
-  start: Number,
-  deleteBook: Object,
-  setDeleteBook: Function,
-  setVisibleDeleteModal: Function,
-  setVisibleAddModal: Function,
-  itemOffset: Number,
-  setItemOffset: Function,
+  books: [],
+  setBooks: noop,
+  setStart: noop,
+  start: 1,
+  deleteBook: {},
+  setDeleteBook: noop,
+  setVisibleDeleteModal: noop,
+  setVisibleAddModal: noop,
+  itemOffset: 0,
+  setItemOffset: noop,
 });

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import {
-  GetBooksFromLocalStorage,
-  SetBooksToLocalStorage,
+  getBooksFromLocalStorage,
+  setBooksToLocalStorage,
 } from "../../utils/localstore";
 import { BooksContext } from "../../contexts/books.context";
 
@@ -10,12 +10,12 @@ export default function DeleteBookModal() {
   const handleClose = () => booksContext.setVisibleDeleteModal(false);
   const handleDelete = () => {
     const id = booksContext.deleteBook.id;
-    const books = GetBooksFromLocalStorage();
+    const books = getBooksFromLocalStorage();
     const index = books.findIndex((book) => book.id === id);
     if (index < -1) return;
     books.splice(index, 1);
     booksContext.setBooks(books);
-    SetBooksToLocalStorage(books);
+    setBooksToLocalStorage(books);
     handleClose();
   };
 
