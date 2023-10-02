@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import ReactPaginate from 'react-paginate';
 import { BooksContext } from '../../contexts/books.context';
 import {
@@ -9,8 +9,15 @@ import { PAGING_CLASS_NAME } from '../../contants/classes.constant';
 
 function PaginatedItems({ itemsPerPage }) {
   const booksContext = useContext(BooksContext);
+  const forcePageRef = useRef<number | undefined>(undefined);
   const { books, setItemOffset } = booksContext;
-  if (!books) return <></>;
+  useEffect(() => {
+    if (books?.length % itemsPerPage !== 0) return;
+    forcePageRef.current = books.length / itemsPerPage - 1;
+    const newOffset = forcePageRef.current * itemsPerPage;
+    setItemOffset(newOffset);
+  }, [books, itemsPerPage, setItemOffset]);
+
   const pageCount = Math.ceil(books.length / itemsPerPage);
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % books.length;
@@ -19,6 +26,7 @@ function PaginatedItems({ itemsPerPage }) {
 
   return (
     <ReactPaginate
+      forcePage={forcePageRef.current}
       className={PAGING_CLASS_NAME.className}
       pageClassName={PAGING_CLASS_NAME.pageClassName}
       breakClassName={PAGING_CLASS_NAME.breakClassName}
@@ -31,7 +39,9 @@ function PaginatedItems({ itemsPerPage }) {
       pageRangeDisplayed={PAGE_RANGE_DISPLAYED}
       pageCount={pageCount}
       previousLabel="< previous"
-      renderOnZeroPageCount={null}
+      renderOnZeroPageCount={(props) => {
+        console.log('props', props);
+      }}
     />
   );
 }
