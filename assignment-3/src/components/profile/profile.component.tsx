@@ -1,5 +1,5 @@
 import avatar from '../../assets/images/avatar.png';
-import ToogleComponent from '../toogle/toogle.component';
+import ThemeToggleInputComponent from '../toogle/theme-toggle-input.component';
 
 export default function ProfileComponent() {
   return (
@@ -7,7 +7,7 @@ export default function ProfileComponent() {
       <div className="left-side">Bookstore</div>
       <div className="right-side">
         <div className="mode">
-          <ToogleComponent />
+          <ThemeToggleInputComponent />
           <span>Light mode</span>
         </div>
         <div className="user">

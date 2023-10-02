@@ -8,8 +8,8 @@ import MainComponent from './components/base/main.component';
 
 import { BooksContext } from './contexts/books.context';
 import {
-  GetBooksFromLocalStorage,
-  GetModeFromLocalStorage,
+  getBooksFromLocalStorage,
+  getModeFromLocalStorage,
 } from './utils/localstore';
 import { ModeContext } from './contexts/mode.context';
 import { CLASS_NAMES } from './contants/classes.constant';
@@ -20,14 +20,14 @@ import { IBook } from './interfaces/book.interface';
 function App() {
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
   const [visibleAddModal, setVisibleAddModal] = useState(false);
-  const [books, setBooks] = useState<IBook[]>(GetBooksFromLocalStorage());
+  const [books, setBooks] = useState<IBook[]>(getBooksFromLocalStorage());
   const [deleteBook, setDeleteBook] = useState({
     id: -1,
     name: '',
   });
   const [start, setStart] = useState(0);
   const [mode, setMode] = useState(
-    GetModeFromLocalStorage() ?? CLASS_NAMES.light,
+    getModeFromLocalStorage() ?? CLASS_NAMES.light,
   );
   const [itemOffset, setItemOffset] = useState(0);
   return (
