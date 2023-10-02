@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { BooksContext } from '../../contexts/books.context';
 import { SearchHelper } from '../../utils/search.helper';
-import { SetBooksToLocalStorage } from '../../utils/localstore';
+import { setBooksToLocalStorage } from '../../utils/localstore';
 import { bookstore } from '../../seed/bookstore';
 
 export default function SearchComponent({ defaultBooks }) {
@@ -19,7 +19,7 @@ export default function SearchComponent({ defaultBooks }) {
 
   const handleAdd = () => bookRowsContext.showAddOverlay(true);
   const handleInit = () => {
-    SetBooksToLocalStorage(bookstore.data);
+    setBooksToLocalStorage(bookstore.data);
     bookRowsContext.setBooks(bookstore.data);
   };
   return (

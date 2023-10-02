@@ -58,7 +58,7 @@ td, th {
   cursor: pointer;
 }
 
-.paging-item {
+.paging-item a {
   border: solid 2px #CCC;
   font-weight: 600;
   font-size: 0.9rem;
@@ -70,8 +70,12 @@ td, th {
   align-items: center;
   margin: 0 0.2rem;
   cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
 }
-.paging-item:hover {
+.paging-item a:hover {
   background-color: #7e7e7e;
   color: #FFF;
   font-weight: 800;
@@ -84,7 +88,7 @@ td, th {
   cursor: pointer;
 }
 
-.paging-item-active {
+.paging-item-active a {
   background-color: #e59797;
   color: #FFF;
   font-weight: 800;

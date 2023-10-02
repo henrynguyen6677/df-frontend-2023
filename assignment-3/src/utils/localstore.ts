@@ -3,18 +3,18 @@ import { JSONStringToObject } from './parse.helper';
 
 export const LocalStorage = window.localStorage;
 
-export const GetBooksFromLocalStorage = () => {
+export const getBooksFromLocalStorage = () => {
   return JSONStringToObject(LocalStorage.getItem(BOOKS));
 };
 
-export const SetBooksToLocalStorage = (books) => {
+export const setBooksToLocalStorage = (books) => {
   LocalStorage.setItem(BOOKS, JSON.stringify(books));
 };
 
-export const GetModeFromLocalStorage = (): string => {
+export const getModeFromLocalStorage = (): string => {
   return LocalStorage.getItem(MODE) as string;
 };
 
-export const SetModeToLocalStorage = (mode) => {
+export const setModeToLocalStorage = (mode) => {
   LocalStorage.setItem(MODE, mode);
 };
