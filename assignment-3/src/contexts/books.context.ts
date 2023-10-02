@@ -14,29 +14,20 @@ interface IBooksContext {
   setItemOffset: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function setBooks() {}
-
-function setStart() {}
-
-function showAddOverlay() {}
-function showDeleteOverlay() {}
-
-function setDeleteBook() {}
-
-function setItemOffset() {}
+function noop() {}
 
 export const BooksContext = createContext<IBooksContext>({
   books: [] as IBook[],
-  setBooks,
-  setStart,
+  setBooks: noop,
+  setStart: noop,
   start: 0,
   deleteBook: {
     id: -1,
     name: '',
   },
-  setDeleteBook,
-  showAddOverlay,
-  showDeleteOverlay,
+  setDeleteBook: noop,
+  showAddOverlay: noop,
+  showDeleteOverlay: noop,
   itemOffset: 0,
-  setItemOffset,
+  setItemOffset: noop,
 });
