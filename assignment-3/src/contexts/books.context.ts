@@ -14,7 +14,7 @@ interface IBooksContext {
   setItemOffset: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function noop() {}
+const noop = () => {};
 
 export const BooksContext = createContext<IBooksContext>({
   books: [] as IBook[],

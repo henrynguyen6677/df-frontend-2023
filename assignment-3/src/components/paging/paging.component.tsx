@@ -39,9 +39,7 @@ function PaginatedItems({ itemsPerPage }) {
       pageRangeDisplayed={PAGE_RANGE_DISPLAYED}
       pageCount={pageCount}
       previousLabel="< previous"
-      renderOnZeroPageCount={(props) => {
-        console.log('props', props);
-      }}
+      renderOnZeroPageCount={null}
     />
   );
 }
