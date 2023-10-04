@@ -17,7 +17,7 @@ function PaginatedItems({ itemsPerPage }) {
     const newOffset = forcePageRef.current * itemsPerPage;
     setItemOffset(newOffset);
   }, [books, itemsPerPage, setItemOffset]);
-
+  if (!books) return <></>;
   const pageCount = Math.ceil(books.length / itemsPerPage);
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % books.length;
