@@ -12,7 +12,7 @@ function PaginatedItems({ itemsPerPage }) {
   const forcePageRef = useRef<number | undefined>(undefined)
   const { books, setItemOffset } = booksContext
   useEffect(() => {
-    if (books.length % itemsPerPage !== 0) return
+    if (!books || books.length % itemsPerPage !== 0) return
     forcePageRef.current = books.length / itemsPerPage - 1
     const newOffset = forcePageRef.current * itemsPerPage
     setItemOffset(newOffset)
