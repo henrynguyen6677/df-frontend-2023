@@ -1,4 +1,3 @@
-import { CLASS_NAMES } from '../../contants/classes.constant'
 import { bookstore } from '../../seed/bookstore'
 import CellComponent from './cell.component'
 
@@ -7,7 +6,7 @@ export default function HeaderComponent() {
 
   return (
     <thead>
-      <tr className={CLASS_NAMES.header}>
+      <tr>
         {headerValues.map((headerValue, index) => (
           <CellComponent key={`${headerValue}-${index}`} value={headerValue} />
         ))}

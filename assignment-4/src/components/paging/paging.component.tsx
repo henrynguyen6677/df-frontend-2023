@@ -27,12 +27,45 @@ function PaginatedItems({ itemsPerPage }) {
   return (
     <ReactPaginate
       forcePage={forcePageRef.current}
-      className={PAGING_CLASS_NAME.className}
-      pageClassName={PAGING_CLASS_NAME.pageClassName}
+      className="
+        flex
+        items-center
+        justify-end
+        pt-4
+        pb-4
+      "
+      pageClassName="
+      p-2
+      [&>a]:border-solid
+      [&>a]:border-gray-600
+      [&>a]:border-2
+      [&>a]:cursor-pointer
+      [&>a]:cursor-pointer
+      [&>a]:pr-[1rem]
+      [&>a]:pl-[1rem]
+      [&>a]:pt-[0.5rem]
+      [&>a]:pb-[0.5rem]
+      [&>a]:text-green-800
+      "
       breakClassName={PAGING_CLASS_NAME.breakClassName}
-      activeClassName={PAGING_CLASS_NAME.activeClassName}
-      previousClassName={PAGING_CLASS_NAME.previousClassName}
-      nextClassName={PAGING_CLASS_NAME.nextClassName}
+      activeClassName="
+        [&>a]:border-solid
+        [&>a]:border-[#FFF]
+        [&>a]:border-2
+        [&>a]:bg-[#e59797]
+        [&>a]:text-white
+        [&>a]:text-bold
+      "
+      previousClassName="
+        cursor-pointer
+        text-green-800
+        font-bold
+      "
+      nextClassName="
+        cursor-pointer
+        text-green-800
+        font-bold
+      "
       breakLabel="..."
       nextLabel="next >"
       onPageChange={handlePageClick}

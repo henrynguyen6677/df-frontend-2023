@@ -1,4 +1,5 @@
 import { createContext } from 'react'
+import { CLASS_NAMES } from '../contants/classes.constant'
 
 interface IModeContext {
   mode: string
@@ -6,6 +7,6 @@ interface IModeContext {
 }
 
 export const ModeContext = createContext<IModeContext>({
-  mode: '',
+  mode: CLASS_NAMES.light,
   setMode: () => undefined,
 })

@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import { CLASS_NAMES } from '../../contants/classes.constant'
 import { BooksContext } from '../../contexts/books.context'
 
 export default function DeleteComponent({
@@ -20,7 +19,7 @@ export default function DeleteComponent({
   return (
     <button
       type="button"
-      className={CLASS_NAMES.deleteItem}
+      className=" cursor-pointer underline text-red-500"
       onClick={() => openPopupDelete(id, name)}
     >
       Delete

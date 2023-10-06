@@ -21,24 +21,83 @@ export default function DeleteBookModal() {
   }
 
   return (
-    <div id="overlayDeleteBook" className="overlay">
-      <div className="modal delete-book">
-        <div className="modal-header">
+    <div
+      id="overlayDeleteBook"
+      className="
+        flex
+        bg-gray-300
+        bg-opacity-20
+        h-full
+        w-full
+        absolute
+        top-0
+        z-100
+    "
+    >
+      <div
+        className="
+        relative
+        w-[15rem]
+        text-black
+        bg-white
+        p-4
+        m-auto
+      "
+      >
+        <div
+          className="
+            flex
+            items-center
+            font-bold
+            justify-between
+        "
+        >
           <div>Delete book</div>
-          <button onClick={handleClose} id="closeDeleteBook">
-            <i className="fa fa-times" aria-hidden="true" />
+          <button
+            className="
+              cursor-pointer
+              text-right
+              w-8
+          "
+            onClick={handleClose}
+            id="closeDeleteBook"
+          >
+            <i className="fa fa-times" aria-hidden="true" />X
           </button>
         </div>
-        <div id="areaDeleteBook">
+        <div
+          id="areaDeleteBook"
+          className="
+          pt-8 pb-8
+        "
+        >
           <span>Do you want to delete </span>
           <b>{booksContext.deleteBook.name}</b>
           <span> book?</span>
         </div>
-        <div className="add-control buttons">
+        <div
+          className="
+            flex
+            flex-row
+            justify-around
+            pt-2
+            pb-2
+        "
+        >
           <button onClick={handleDelete} id="delete" className="button-delete">
             Delete
           </button>
-          <button onClick={handleClose} id="cancel">
+          <button
+            className="
+            bg-[#c7266b]
+            rounded-[0.3rem]
+            pl-[1rem]
+            pr-[1rem]
+            text-white
+          "
+            onClick={handleClose}
+            id="cancel"
+          >
             Cancel
           </button>
         </div>

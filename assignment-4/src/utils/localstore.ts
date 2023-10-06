@@ -7,7 +7,7 @@ export const LocalStorage = () => {
 }
 
 export const getBooksFromLocalStorage = () => {
-  if (typeof window === 'undefined') return
+  if (typeof window === 'undefined') return []
   return JSONStringToObject(LocalStorage().getItem(BOOKS))
 }
 
@@ -19,4 +19,9 @@ export const setBooksToLocalStorage = (books) => {
 export const setModeToLocalStorage = (mode) => {
   if (typeof window === 'undefined') return
   LocalStorage().setItem(MODE, mode)
+}
+
+export const getModeFromLocalStorage = (): string => {
+  if (typeof window === 'undefined') return ''
+  return LocalStorage().getItem(MODE) as string
 }

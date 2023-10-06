@@ -23,19 +23,52 @@ export default function SearchComponent({ defaultBooks }) {
     bookRowsContext.setBooks(bookstore.data)
   }
   return (
-    <div id="search">
-      <div className="initContainer">
-        <button onClick={handleInit} id="initBooks">
+    <div className="flex pt-8 pb-8 h-8 items-center justify-between">
+      <div className="relative float-left">
+        <button
+          onClick={handleInit}
+          className="
+            bg-fuchsia-800
+            border-solid
+            border-1
+            rounded-[0.3rem]
+            text-white
+            ml-4
+            min-w-[6rem]
+            p-[0.3rem]
+          "
+        >
           Init books
         </button>
       </div>
-      <div className="searchContainer">
+      <div className="flex h-[2rem] pr-4 pl-4">
         <input
-          id="searchInput"
+          className="
+          bg-white flex
+          justify-center
+          items-center
+          rounded-[0.2rem]
+          p-4
+          "
           onChange={handleFilter}
           placeholder="Search books"
         />
-        <button onClick={handleAdd} id="addBook">
+        <button
+          onClick={handleAdd}
+          className="
+          bg-fuchsia-800
+          border-solid
+          rounded-[0.3rem]
+          text-white
+          cursor-pointer
+          flex
+          ml-4
+          min-w-[6rem]
+          justify-center
+          items-center
+          p-4
+        "
+        >
           Add book
         </button>
       </div>

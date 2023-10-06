@@ -3,7 +3,7 @@ import BooksComponent from './books.component'
 
 export default function TableComponent() {
   return (
-    <table>
+    <table className="w-full">
       <HeaderComponent />
       <BooksComponent />
     </table>
