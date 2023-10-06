@@ -11,9 +11,8 @@ export default function AddBookModal() {
   const handleCreateBook = (e) => {
     e.preventDefault()
     const formData = new FormData(formRef.current as HTMLFormElement)
-    const newBooks: IBook[] = JSONStringToObject(
-      JSON.stringify(booksContext.books),
-    )
+    const newBooks: IBook[] =
+      JSONStringToObject(JSON.stringify(booksContext.books)) || []
     newBooks.push({
       id: Date.now(),
       author: formData.get('author') as string,
