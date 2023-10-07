@@ -8,7 +8,7 @@ import PagingComponent from '../components/paging/paging.component'
 
 export default function Home() {
   return (
-    <div className="bg-[#efefef] p-8 h-[100vh]">
+    <div className="p-8 h-[100vh]">
       <ProfileComponent />
       <SearchComponent defaultBooks={getBooksFromLocalStorage()} />
       <TableComponent />

@@ -66,11 +66,16 @@ export default function RootLayout({
     ],
   )
   const modeContextValue = useMemo(() => ({ mode, setMode }), [mode, setMode])
+
+  const light = 'bg-[#efefef] text-[#212020]'
+  const dark = 'bg-black text-[#eee]'
   return (
     <html lang="en">
       <BooksContext.Provider value={booksContextValue}>
         <ModeContext.Provider value={modeContextValue}>
-          <body className={inter.className}>{children}</body>
+          <body className={mode === CLASS_NAMES.light ? light : dark}>
+            {children}
+          </body>
           {visibleAddModal && <AddBookModal />}
           {visibleDeleteModal && <DeleteBookModal />}
         </ModeContext.Provider>
