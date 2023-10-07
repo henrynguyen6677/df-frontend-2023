@@ -28,7 +28,7 @@ export default function SearchComponent({ defaultBooks }) {
         <button
           onClick={handleInit}
           className="
-            bg-fuchsia-800
+            bg-[#c7266b]
             border-solid
             border-1
             rounded-[0.3rem]
@@ -56,7 +56,7 @@ export default function SearchComponent({ defaultBooks }) {
         <button
           onClick={handleAdd}
           className="
-          bg-fuchsia-800
+          bg-[#c7266b]
           border-solid
           rounded-[0.3rem]
           text-white
