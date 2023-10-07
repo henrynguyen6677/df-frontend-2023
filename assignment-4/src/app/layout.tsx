@@ -1,7 +1,6 @@
 'use client'
 
 import './globals.css'
-import { Inter } from 'next/font/google'
 import { useMemo, useState } from 'react'
 import { ModeContext } from '../contexts/mode.context'
 import { CLASS_NAMES } from '../contants/classes.constant'
@@ -13,8 +12,6 @@ import AddBookModal from '../components/modals/add-book.modal'
 import DeleteBookModal from '../components/modals/delete-book.modal'
 import { IBook } from '../interfaces/book.interface'
 import { BooksContext } from '../contexts/books.context'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
