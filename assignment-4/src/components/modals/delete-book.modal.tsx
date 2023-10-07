@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useRouter } from 'next/navigation'
 import {
   getBooksFromLocalStorage,
   setBooksToLocalStorage,
@@ -7,6 +8,7 @@ import { BooksContext } from '../../contexts/books.context'
 import { IBook } from '../../interfaces/book.interface'
 
 export default function DeleteBookModal() {
+  const router = useRouter()
   const booksContext = useContext(BooksContext)
   const handleClose = () => booksContext.showDeleteOverlay(false)
   const handleDelete = () => {
@@ -18,6 +20,9 @@ export default function DeleteBookModal() {
     booksContext.setBooks(books)
     setBooksToLocalStorage(books)
     handleClose()
+    if (booksContext.isGoHome) {
+      router.push('/')
+    }
   }
 
   return (

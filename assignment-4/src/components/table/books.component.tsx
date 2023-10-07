@@ -3,6 +3,7 @@ import { BooksContext } from '../../contexts/books.context'
 import BookComponent from './book.component'
 import DeleteComponent from './delete.component'
 import { ITEMS_PER_PAGE } from '../../contants/paging.constant'
+import ViewComponent from './view.component'
 
 export default function BooksComponent() {
   const booksContext = useContext(BooksContext)
@@ -20,7 +21,20 @@ export default function BooksComponent() {
               name={name}
               author={author}
               topic={topic}
-              deleteElement={<DeleteComponent id={id} name={name} />}
+              actionElement={
+                <>
+                  <DeleteComponent id={id} name={name} />
+                  <span
+                    className="
+                    pl-2 pr-2
+                    text-red-500
+                  "
+                  >
+                    |
+                  </span>
+                  <ViewComponent id={id} />
+                </>
+              }
             />
           )
         })}

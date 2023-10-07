@@ -12,6 +12,8 @@ interface IBooksContext {
   setDeleteBook: React.Dispatch<React.SetStateAction<IDeleteBook>>
   itemOffset: number
   setItemOffset: React.Dispatch<React.SetStateAction<number>>
+  isGoHome: boolean
+  setGoHome: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const noop = () => {}
@@ -30,4 +32,6 @@ export const BooksContext = createContext<IBooksContext>({
   showDeleteOverlay: noop,
   itemOffset: 0,
   setItemOffset: noop,
+  isGoHome: false,
+  setGoHome: noop,
 })
