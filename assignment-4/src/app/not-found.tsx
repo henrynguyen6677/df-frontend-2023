@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { RoutesConstant } from '../contants/routes.constant'
 
 export default function NotFound() {
   const router = useRouter()
@@ -18,7 +19,7 @@ export default function NotFound() {
         <button
           type="button"
           className=" cursor-pointer underline text-red-500"
-          onClick={() => router.push('/')}
+          onClick={() => router.push(RoutesConstant.HOME)}
         >
           Back to home page
         </button>
