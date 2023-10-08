@@ -7,7 +7,7 @@ import {
 } from '../../contants/paging.constant'
 import { PAGING_CLASS_NAME } from '../../contants/classes.constant'
 
-function PaginatedItems({ itemsPerPage }) {
+function PaginatedItems({ itemsPerPage }: { itemsPerPage: number }) {
   const booksContext = useContext(BooksContext)
   const forcePageRef = useRef<number | undefined>(undefined)
   const { books, setItemOffset } = booksContext
@@ -19,7 +19,7 @@ function PaginatedItems({ itemsPerPage }) {
   }, [books, itemsPerPage, setItemOffset])
   if (!books) return null
   const pageCount = Math.ceil(books.length / itemsPerPage)
-  const handlePageClick = (event) => {
+  const handlePageClick = (event: { selected: number }) => {
     const newOffset = (event.selected * itemsPerPage) % books.length
     setItemOffset(newOffset)
   }

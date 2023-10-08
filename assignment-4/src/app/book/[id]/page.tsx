@@ -7,7 +7,13 @@ import { IBook } from '../../../interfaces/book.interface'
 import DeleteComponent from '../../../components/table/delete.component'
 import { BooksContext } from '../../../contexts/books.context'
 
-export default function Book(props) {
+interface IBookProps {
+  params: {
+    id: number
+  }
+}
+
+export default function Book(props: IBookProps) {
   const router = useRouter()
   const bookId = props?.params?.id
   const [book, setBook] = useState<IBook>()
@@ -20,7 +26,7 @@ export default function Book(props) {
 
     setBook(book)
     booksContext.setGoHome(true)
-  }, [bookId])
+  }, [bookId, router, booksContext])
   return (
     <div className="p-8">
       <div>

@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react'
+import { FormEvent, useContext, useRef } from 'react'
 import { BooksContext } from '../../contexts/books.context'
 import { setBooksToLocalStorage } from '../../utils/localstore'
 import { JSONStringToObject } from '../../utils/parse.helper'
@@ -8,7 +8,7 @@ export default function AddBookModal() {
   const booksContext = useContext(BooksContext)
   const formRef = useRef<HTMLFormElement | null>(null)
   const handleClose = () => booksContext.showAddOverlay(false)
-  const handleCreateBook = (e) => {
+  const handleCreateBook = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(formRef.current as HTMLFormElement)
     const newBooks: IBook[] =

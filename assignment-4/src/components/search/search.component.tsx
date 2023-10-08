@@ -1,13 +1,18 @@
-import { useContext } from 'react'
+import { ChangeEvent, useContext } from 'react'
 import { BooksContext } from '../../contexts/books.context'
 import { SearchHelper } from '../../utils/search.helper'
 import { setBooksToLocalStorage } from '../../utils/localstore'
 import { bookstore } from '../../seed/bookstore'
+import { IBook } from '../../interfaces/book.interface'
 
-export default function SearchComponent({ defaultBooks }) {
+export default function SearchComponent({
+  defaultBooks,
+}: {
+  defaultBooks: IBook[]
+}) {
   const bookRowsContext = useContext(BooksContext)
   const { setBooks, books } = bookRowsContext
-  const handleFilter = (e) => {
+  const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
     const filter = e.target.value
     if (filter === '' && books.length === 0) {
       setBooks(defaultBooks)

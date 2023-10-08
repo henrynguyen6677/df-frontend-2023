@@ -9,7 +9,7 @@ export default function DeleteComponent({
   name: string
 }) {
   const booksContext = useContext(BooksContext)
-  const openPopupDelete = (id, name) => {
+  const openPopupDelete = (id: number, name: string) => {
     booksContext.setDeleteBook({
       id,
       name,

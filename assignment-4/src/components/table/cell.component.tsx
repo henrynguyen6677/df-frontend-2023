@@ -1,4 +1,10 @@
-export default function CellComponent({ value }) {
+import { ReactElement } from 'react'
+
+export default function CellComponent({
+  value,
+}: {
+  value: string | number | ReactElement
+}) {
   return (
     <th
       className="

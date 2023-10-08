@@ -1,8 +1,10 @@
-const WrapperToLowercase = (text) => {
+import { IBook } from '../interfaces/book.interface'
+
+const WrapperToLowercase = (text: string) => {
   return text.toLowerCase()
 }
 
-export const SearchHelper = (books, filter) => {
+export const SearchHelper = (books: IBook[], filter: string) => {
   return books
     ?.filter(
       (item) =>
