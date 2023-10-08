@@ -6,6 +6,7 @@ import {
 } from '../../utils/localstore'
 import { BooksContext } from '../../contexts/books.context'
 import { IBook } from '../../interfaces/book.interface'
+import { RoutesConstant } from '../../contants/routes.constant'
 
 export default function DeleteBookModal() {
   const router = useRouter()
@@ -21,7 +22,7 @@ export default function DeleteBookModal() {
     setBooksToLocalStorage(books)
     handleClose()
     if (booksContext.isGoHome) {
-      router.push('/')
+      router.push(RoutesConstant.HOME)
     }
   }
 

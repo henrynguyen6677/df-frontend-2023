@@ -14,6 +14,9 @@ interface IBooksContext {
   setItemOffset: React.Dispatch<React.SetStateAction<number>>
   isGoHome: boolean
   setGoHome: React.Dispatch<React.SetStateAction<boolean>>
+  editBook: IBook
+  setEditBook: React.Dispatch<React.SetStateAction<IBook>>
+  setVisibleEditModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const noop = () => {}
@@ -34,4 +37,7 @@ export const BooksContext = createContext<IBooksContext>({
   setItemOffset: noop,
   isGoHome: false,
   setGoHome: noop,
+  editBook: <IBook>{},
+  setEditBook: noop,
+  setVisibleEditModal: noop,
 })

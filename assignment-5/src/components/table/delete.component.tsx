@@ -1,15 +1,13 @@
 import { useContext } from 'react'
 import { BooksContext } from '../../contexts/books.context'
+import { IBook } from '../../interfaces/book.interface'
 
 export default function DeleteComponent({
   id,
   name,
-}: {
-  id: number
-  name: string
-}) {
+}: Pick<IBook, 'id' | 'name'>) {
   const booksContext = useContext(BooksContext)
-  const openPopupDelete = (id, name) => {
+  const openPopupDelete = (id: number, name: string) => {
     booksContext.setDeleteBook({
       id,
       name,

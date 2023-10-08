@@ -1,3 +1,4 @@
+import { ReactElement } from 'react'
 import CellComponent from './cell.component'
 
 export default function BookComponent({
@@ -6,6 +7,12 @@ export default function BookComponent({
   name,
   topic,
   actionElement,
+}: {
+  id: number
+  author: string
+  name: string
+  topic: string
+  actionElement: ReactElement
 }) {
   return (
     <tr>

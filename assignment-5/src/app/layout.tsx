@@ -12,6 +12,7 @@ import AddBookModal from '../components/modals/add-book.modal'
 import DeleteBookModal from '../components/modals/delete-book.modal'
 import { IBook } from '../interfaces/book.interface'
 import { BooksContext } from '../contexts/books.context'
+import EditBookModal from '../components/modals/edit-book.modal'
 
 export default function RootLayout({
   children,
@@ -32,6 +33,14 @@ export default function RootLayout({
   const [start, setStart] = useState(0)
   const [itemOffset, setItemOffset] = useState(0)
   const [isGoHome, setGoHome] = useState(false)
+  const [editBook, setEditBook] = useState<IBook>({
+    author: '',
+    id: -1,
+    name: '',
+    topic: '',
+  })
+  const [visibleEditModal, setVisibleEditModal] = useState(false)
+
   const booksContextValue = useMemo(
     () => ({
       books,
@@ -46,6 +55,9 @@ export default function RootLayout({
       setItemOffset,
       isGoHome,
       setGoHome,
+      editBook,
+      setEditBook,
+      setVisibleEditModal,
     }),
     [
       books,
@@ -60,6 +72,9 @@ export default function RootLayout({
       setItemOffset,
       isGoHome,
       setGoHome,
+      editBook,
+      setEditBook,
+      setVisibleEditModal,
     ],
   )
   const modeContextValue = useMemo(() => ({ mode, setMode }), [mode, setMode])
@@ -75,6 +90,7 @@ export default function RootLayout({
           </body>
           {visibleAddModal && <AddBookModal />}
           {visibleDeleteModal && <DeleteBookModal />}
+          {visibleEditModal && <EditBookModal />}
         </ModeContext.Provider>
       </BooksContext.Provider>
     </html>

@@ -6,28 +6,35 @@ import { getBooksFromLocalStorage } from '../../../utils/localstore'
 import { IBook } from '../../../interfaces/book.interface'
 import DeleteComponent from '../../../components/table/delete.component'
 import { BooksContext } from '../../../contexts/books.context'
+import { RoutesConstant } from '../../../contants/routes.constant'
 
-export default function Book(props) {
+interface IBookProps {
+  params: {
+    id: number
+  }
+}
+
+export default function Book(props: IBookProps) {
   const router = useRouter()
   const bookId = props?.params?.id
   const [book, setBook] = useState<IBook>()
   const booksContext = useContext(BooksContext)
   useEffect(() => {
-    if (!bookId) return router.push('/not-found')
+    if (!bookId) return router.push(RoutesConstant.NOT_FOUND)
     const books: IBook[] = getBooksFromLocalStorage()
     const book = books.find(({ id }) => id === Number(bookId))
-    if (!book) return router.push('/not-found')
+    if (!book) return router.push(RoutesConstant.NOT_FOUND)
 
     setBook(book)
     booksContext.setGoHome(true)
-  }, [bookId])
+  }, [bookId, router, booksContext])
   return (
     <div className="p-8">
       <div>
         <button
           type="button"
           className="cursor-pointer underline text-red-500 pb-4"
-          onClick={() => router.push('/')}
+          onClick={() => router.push(RoutesConstant.HOME)}
         >
           Back
         </button>
