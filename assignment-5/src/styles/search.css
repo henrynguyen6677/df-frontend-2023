@@ -1,0 +1,53 @@
+#search {
+    display: flex;
+    height: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.searchContainer {
+    display: flex;
+    height: 2rem;
+    padding: 1rem;
+}
+
+#searchInput, #addBook {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.3rem;
+    border: 0.1rem;
+}
+#searchInput {
+    flex: 0.2;
+    background-color: #ffffff;
+}
+
+#addBook {
+    flex: 0.1;
+    border-radius: 0.3rem;
+    margin-left: 1rem;
+    min-width: 6rem;
+    border: solid #e1dcdd 0.1rem;
+    background-color: #c7266b;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.initContainer {
+    position: relative;
+    float: left;
+}
+
+#initBooks {
+    flex: 0.1;
+    border-radius: 0.3rem;
+    margin-left: 1rem;
+    border: solid #e1dcdd 0.1rem;
+    min-width: 6rem;
+    background-color: #2ca5ce;
+    color: #FFF;
+    cursor: pointer;
+}
