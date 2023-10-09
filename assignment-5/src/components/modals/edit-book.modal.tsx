@@ -1,24 +1,27 @@
 import { FormEvent, useContext, useRef } from 'react'
 import { BooksContext } from '../../contexts/books.context'
 import { setBooksToLocalStorage } from '../../utils/localstore'
-import { JSONStringToObject } from '../../utils/parse.helper'
 import { IBook } from '../../interfaces/book.interface'
+import { cloneObject } from '../../utils/parse.helper'
 
-export default function AddBookModal() {
+export default function EditBookModal() {
   const booksContext = useContext(BooksContext)
+  const { editBook, books } = booksContext
+
   const formRef = useRef<HTMLFormElement | null>(null)
-  const handleClose = () => booksContext.showAddOverlay(false)
-  const handleCreateBook = (e: FormEvent<HTMLFormElement>) => {
+
+  const handleClose = () => booksContext.setVisibleEditModal(false)
+  const handleEditBook = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(formRef.current as HTMLFormElement)
-    const newBooks: IBook[] =
-      JSONStringToObject(JSON.stringify(booksContext.books)) || []
-    newBooks.push({
-      id: Date.now(),
-      author: formData.get('author') as string,
-      name: formData.get('name') as string,
-      topic: formData.get('topic') as string,
-    })
+    const bookIndex = books.findIndex((book) => book.id === editBook.id)
+    if (bookIndex === -1) return
+    const newBook = { ...books[bookIndex] }
+    newBook.author = formData.get('author') as string
+    newBook.name = formData.get('name') as string
+    newBook.topic = formData.get('topic') as string
+    books[bookIndex] = newBook
+    const newBooks: IBook[] = cloneObject(books)
     setBooksToLocalStorage(newBooks)
     booksContext.setBooks(newBooks)
     handleClose()
@@ -55,7 +58,7 @@ export default function AddBookModal() {
             justify-between
         "
         >
-          <div>Add book</div>
+          <div>Edit book</div>
 
           <button
             onClick={handleClose}
@@ -69,7 +72,7 @@ export default function AddBookModal() {
             <i className="fa fa-times" aria-hidden="true" />X
           </button>
         </div>
-        <form ref={formRef} id="formAddBook" onSubmit={handleCreateBook}>
+        <form ref={formRef} id="formAddBook" onSubmit={handleEditBook}>
           <div
             className="
             flex
@@ -81,6 +84,7 @@ export default function AddBookModal() {
             <label htmlFor="name">
               Name
               <input
+                defaultValue={editBook.name}
                 className="
                 border-solid
                 border-black
@@ -104,6 +108,7 @@ export default function AddBookModal() {
             <label htmlFor="author">
               Author
               <input
+                defaultValue={editBook.author}
                 className="
                 border-solid
                 border-black
@@ -127,6 +132,7 @@ export default function AddBookModal() {
             <label htmlFor="topic">
               Topic
               <select
+                defaultValue={editBook.topic}
                 className="
                 border-solid
                 border-black
@@ -164,7 +170,7 @@ export default function AddBookModal() {
               type="submit"
               id="createBook"
             >
-              Create
+              Edit
             </button>
           </div>
         </form>
