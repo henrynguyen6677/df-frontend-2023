@@ -3,4 +3,5 @@ export const TOPICS = {
   devops: 'DevOps',
   database: 'Database',
   comic: 'Comic',
+  other: 'Other',
 }
