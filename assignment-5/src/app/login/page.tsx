@@ -98,7 +98,7 @@ export default function Login() {
                   rounded-[0.3rem]
                   border-[1px]
                   w-full
-                  ${errors?.name ? 'border-red-500' : ''}
+                  ${errors?.email ? 'border-red-500' : ''}
                 `}
                 type="text"
                 name="email"
