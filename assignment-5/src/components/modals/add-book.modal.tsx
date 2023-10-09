@@ -1,27 +1,58 @@
-import { FormEvent, useContext, useRef } from 'react'
+import { FormEvent, useContext, useRef, useState } from 'react'
+import * as z from 'zod'
 import { BooksContext } from '../../contexts/books.context'
 import { setBooksToLocalStorage } from '../../utils/localstore'
 import { JSONStringToObject } from '../../utils/parse.helper'
 import { IBook } from '../../interfaces/book.interface'
+import { TOPICS } from '../../contants/topic.constant'
+import { Errors } from '../../contants/error.constant'
 
 export default function AddBookModal() {
   const booksContext = useContext(BooksContext)
   const formRef = useRef<HTMLFormElement | null>(null)
   const handleClose = () => booksContext.showAddOverlay(false)
+  const [errors, setErrors] = useState<Errors>({})
+  const addBookValidationSchema = z.object({
+    author: z.string().trim().min(5, 'Minimum length should be 5 characters'),
+    name: z
+      .string()
+      .trim()
+      .regex(/^[A-Za-z\s]+$/, 'Only letters and spaces are allowed'),
+    topic: z.enum([
+      TOPICS.other,
+      TOPICS.devops,
+      TOPICS.comic,
+      TOPICS.programing,
+      TOPICS.database,
+    ]),
+  })
+
   const handleCreateBook = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(formRef.current as HTMLFormElement)
-    const newBooks: IBook[] =
-      JSONStringToObject(JSON.stringify(booksContext.books)) || []
-    newBooks.push({
-      id: Date.now(),
-      author: formData.get('author') as string,
-      name: formData.get('name') as string,
-      topic: formData.get('topic') as string,
-    })
-    setBooksToLocalStorage(newBooks)
-    booksContext.setBooks(newBooks)
-    handleClose()
+    try {
+      addBookValidationSchema.parse({
+        author: formData.get('author') as string,
+        name: formData.get('name') as string,
+        topic: formData.get('topic') as string,
+      })
+      setErrors({})
+      const newBooks: IBook[] =
+        JSONStringToObject(JSON.stringify(booksContext.books)) || []
+      newBooks.push({
+        id: Date.now(),
+        author: formData.get('author') as string,
+        name: formData.get('name') as string,
+        topic: formData.get('topic') as string,
+      })
+      setBooksToLocalStorage(newBooks)
+      booksContext.setBooks(newBooks)
+      handleClose()
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        setErrors(err.flatten().fieldErrors as Errors)
+      }
+    }
   }
 
   return (
@@ -81,17 +112,21 @@ export default function AddBookModal() {
             <label htmlFor="name">
               Name
               <input
-                className="
+                className={`
+                pl-1
                 border-solid
                 border-black
                 rounded-[2px]
                 border-[1px]
-              "
+                ${errors?.name ? 'border-red-500' : ''}
+              `}
                 type="text"
                 name="name"
                 id="name"
+                required
               />
             </label>
+            <div className="text-red-500 text-[0.9rem]">{errors?.name}</div>
           </div>
           <div
             className="
@@ -104,17 +139,21 @@ export default function AddBookModal() {
             <label htmlFor="author">
               Author
               <input
-                className="
+                className={`
+                pl-1
                 border-solid
                 border-black
                 rounded-[2px]
                 border-[1px]
-              "
+                ${errors?.author ? 'border-red-500' : ''}
+                `}
                 type="text"
                 name="author"
                 id="author"
+                required
               />
             </label>
+            <div className="text-red-500 text-[0.9rem]">{errors?.author}</div>
           </div>
           <div
             className="
@@ -134,16 +173,19 @@ export default function AddBookModal() {
                 border-[1px]
                 flex
               "
+                required
                 name="topic"
                 id="topic"
               >
-                <option value="Comic">Comic</option>
-                <option value="Database">Database</option>
-                <option value="DevOps">DevOps</option>
-                <option value="Programming">Programming</option>
-                <option value="Other">Other</option>
+                <option value="">Select</option>
+                <option value={TOPICS.comic}>{TOPICS.comic}</option>
+                <option value={TOPICS.database}>{TOPICS.database}</option>
+                <option value={TOPICS.devops}>{TOPICS.devops}</option>
+                <option value={TOPICS.programing}>{TOPICS.programing}</option>
+                <option value={TOPICS.other}>{TOPICS.other}</option>
               </select>
             </label>
+            <div className="text-red-500 text-[0.9rem]">{errors?.topic}</div>
           </div>
           <div
             className="

@@ -12,7 +12,6 @@ export default function BooksComponent() {
   const booksContext = useContext(BooksContext)
   const { books, itemOffset } = booksContext
   const endOffset = itemOffset + ITEMS_PER_PAGE
-  console.log('books', books)
   return (
     <tbody>
       {books?.slice(itemOffset, endOffset).map((book: IBook) => {
